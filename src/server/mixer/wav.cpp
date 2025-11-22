@@ -104,3 +104,43 @@ WavFile load_wav(const std::filesystem::path& path) {
     
     return wav;
 }
+
+int write_wav(WavFile wav) {
+    std::string output_file = "..\\..\\soundfiles\\new_wav.wav";
+    std::ofstream out(output_file, std::ios::binary);
+
+    if (!out.is_open()) {
+        std::cout << "Error opening the target output file." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+
+    // Write out RIFF and WAVE headers
+    out.write("RIFF", 4);
+    out.write(reinterpret_cast<const char*>(&wav.file_size), 4);
+    out.write("WAVE", 4);
+
+    // Write out 'fmt ' subchunk
+    out.write("fmt ", 4);
+    uint32_t fmt_chunk_size = 16;
+    out.write(reinterpret_cast<const char*>(&fmt_chunk_size), 4);
+    out.write(reinterpret_cast<const char*>(&wav.audio_format), 2);
+    out.write(reinterpret_cast<const char*>(&wav.num_channels), 2);
+    out.write(reinterpret_cast<const char*>(&wav.sample_rate), 4);
+    out.write(reinterpret_cast<const char*>(&wav.byte_rate), 4);
+    out.write(reinterpret_cast<const char*>(&wav.block_align), 2);
+    out.write(reinterpret_cast<const char*>(&wav.bits_per_sample), 2);
+
+    // Write out 'data' subchunk
+    out.write("data", 4);
+    out.write(reinterpret_cast<const char*>(&wav.pcm_data_size), 4);
+    
+    // write out the entire pcm data
+    out.write(
+        reinterpret_cast<const char*>(wav.pcm.data()),
+        wav.pcm.size() * sizeof(int16_t)
+    );
+
+    // cleanup resources
+    out.close();
+    return 0;
+}

@@ -34,13 +34,15 @@ WavFile merge_two_wav(WavFile wav_1, WavFile wav_2) {
 
     // we can assume values for the following fields are the same as the min file for now
     new_wav.sample_rate = wav_1.sample_rate;
-    new_wav.num_channels = wav_1.num_channels;
     new_wav.bits_per_sample = wav_1.bits_per_sample;
+    new_wav.num_channels = wav_1.num_channels;
     new_wav.block_align = wav_1.block_align;
     new_wav.audio_format = wav_1.audio_format;
     
-    // calculate the duration and pcm data size
+    // calculate the duration, pcm data size, and file size
+    new_wav.byte_rate = new_wav.sample_rate * new_wav.num_channels * (new_wav.bits_per_sample / 8);
     new_wav.pcm_data_size = output_length * (new_wav.bits_per_sample / 8) * new_wav.num_channels;
+    new_wav.file_size = new_wav.pcm_data_size + 36;
     new_wav.duration = double(output_length) / new_wav.sample_rate;
 
     return new_wav;

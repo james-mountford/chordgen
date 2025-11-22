@@ -18,5 +18,6 @@ struct WavFile {
 };
 
 WavFile load_wav(const std::filesystem::path& path);
+int write_wav(WavFile wav);
 
 #endif

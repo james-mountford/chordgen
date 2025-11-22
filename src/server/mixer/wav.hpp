@@ -14,6 +14,7 @@ struct WavFile {
     uint16_t bits_per_sample;
     uint32_t pcm_data_size;
     std::vector<int16_t> pcm;
+    double duration;
 };
 
 WavFile load_wav(const std::filesystem::path& path);

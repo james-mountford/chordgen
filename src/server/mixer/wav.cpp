@@ -64,7 +64,7 @@ WavFile load_wav(const std::filesystem::path& path) {
         // 'data' branch
         } else if (subchunk_id[0] == 'd' && subchunk_id[1] == 'a' && subchunk_id[2] == 't' && subchunk_id[3] == 'a' && !found_data) {
             // std::cout << "'data' subchunk descriptor missing or invalid. Aborting...";
-            // std::exit(EXIT_FAILURE);
+            // std::exit(EXIT_FAILURstd::exit(EXIT_FAILURE);E);
             //  save the pcm data size in case it's needed later
             wav.pcm_data_size = subchunk_size_uint;
             
@@ -87,6 +87,9 @@ WavFile load_wav(const std::filesystem::path& path) {
                 wav.pcm.push_back(sample); // push into the vector
                 index += 2; // advance
             }
+
+            // get the duration in seconds
+            wav.duration = double(wav.pcm.size()) / wav.sample_rate;
 
             break;
         // random other branches

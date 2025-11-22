@@ -144,3 +144,24 @@ int write_wav(WavFile wav) {
     out.close();
     return 0;
 }
+
+void read_wav_metadata(std::string target_directory) {
+    for (const auto & entry : std::filesystem::directory_iterator(target_directory)) {
+        // Ensure we're trying to read a file
+        if (!entry.is_regular_file()) {
+            std::cout << "File at '" << entry << "' is not a regular file" << std::endl;
+            continue;
+        }
+
+        // Attempt to load the file
+        auto wav = load_wav(entry.path());
+
+        // Print out some basic metadata about files in the current path
+        std::cout << "Loaded file: " << entry.path().filename().string() << '\n';
+        std::cout << " - Sample Rate: " << wav.sample_rate << '\n';
+        std::cout << " - Channels: " << wav.num_channels << '\n';
+        std::cout << " - Bits per Sample: " << wav.bits_per_sample << '\n';
+        std::cout << " - PCM Samples: " << wav.pcm.size() << '\n'; 
+        std::cout << " - Duration: " << wav.duration << " sec\n";
+    }
+}

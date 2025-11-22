@@ -19,5 +19,6 @@ struct WavFile {
 
 WavFile load_wav(const std::filesystem::path& path);
 int write_wav(WavFile wav);
+void read_wav_metadata(std::string target_directory);
 
 #endif

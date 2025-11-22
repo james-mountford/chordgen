@@ -11,7 +11,7 @@
         "${workspaceFolder}/src/server/mixer/mixer.cpp",
         "${workspaceFolder}/src/server/mixer/wav.cpp",
         "-o",
-        "${workspaceFolder}/src/server/mixer/mixer.exe"
+        "${workspaceFolder}/src/server/mixer/main.exe"
       ],
       "problemMatcher": [
         "$gcc"

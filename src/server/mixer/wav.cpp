@@ -1,6 +1,7 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include "mixer_exception.hpp"
 #include "wav.hpp"
 
 WavFile load_wav(const std::filesystem::path& path) {
@@ -105,13 +106,12 @@ WavFile load_wav(const std::filesystem::path& path) {
     return wav;
 }
 
-int write_wav(WavFile wav) {
+void write_wav(WavFile& wav) {
     std::string output_file = "..\\..\\soundfiles\\new_wav.wav";
     std::ofstream out(output_file, std::ios::binary);
 
     if (!out.is_open()) {
-        std::cout << "Error opening the target output file." << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw MixerError("Error opening the target output file.");
     }
 
     // Write out RIFF and WAVE headers
@@ -142,7 +142,7 @@ int write_wav(WavFile wav) {
 
     // cleanup resources
     out.close();
-    return 0;
+
 }
 
 void read_wav_metadata(std::string target_directory) {

@@ -55,8 +55,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Successfully merged the specified wav files." << std::endl;
 
-    // Wait for user input before exiting the terminal
-    std::string random_input;
-    std::cout << "Press any key to exit...";
-    std::cin >> random_input;
+    std::exit(EXIT_SUCCESS);
+
 }

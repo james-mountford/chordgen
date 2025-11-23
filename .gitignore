@@ -1,4 +1,5 @@
 venv_chordgen/*
+src/generated/wav/**
 __pycache__/
 *.exe
 *.lib

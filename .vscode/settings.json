@@ -76,5 +76,8 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "python.analysis.extraPaths": [
+        "./python"
+    ]
 }

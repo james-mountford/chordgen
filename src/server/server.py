@@ -10,9 +10,6 @@ sys.path.append(
     )
 )
 from mixer import mixer as mixer
-print("mixer module:", mixer)
-print("mixer __file__:", getattr(mixer, "__file__", None))
-print("mixer dir:", dir(mixer))
 
 app = Flask(__name__)
 
@@ -22,8 +19,7 @@ def hello_world():
 
 @app.route("/")
 def index():
-    title = "Chordgen"
-    return render_template('index.html', title=title)
+    return render_template('chordgen.html')
 
 @app.route("/api/generate-sample-progression")
 def mix_chords():

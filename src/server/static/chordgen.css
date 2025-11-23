@@ -1,0 +1,880 @@
+html,
+body {
+    margin: 0;
+}
+
+html {
+    background: linear-gradient(to top, white, black);
+}
+
+body {
+    animation: fadeIn;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.button {
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+    line-height: 30px;
+    font-family: Oxygen;
+    font-weight: 200;
+    font-size: 40px;
+}
+
+.play {
+    position: relative;
+    bottom: -18%;
+    left: 12%;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    transition: background-color 0.5s, font-size 0.5s, font-weight 0.15s;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+    font-weight: 200;
+}
+
+.play:hover {
+    background-color: white;
+    font-size: 45px;
+    font-weight: 600;
+}
+
+.playDesc {
+    width: 300px;
+    font-family: Oxygen;
+    color: white;
+    font-size: 20px;
+    left: 315px;
+    bottom: 55px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* hides minor progression generation, until minor keys are added. */
+.minor {
+    display: none;
+}
+
+.bigPianoWrap {
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+.pianoWrap {
+    min-width: 900px;
+    width: 900px;
+    max-width: 900px;
+    height: 320px;
+    text-align: center;
+    display: inline-block;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: relative;
+    border-left: 10px solid #9B111E;
+    border-right: 10px solid #9B111E;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index: 5;
+    padding-right: -10px;
+}
+
+.pianoWhiteKey {
+    width: 50px;
+    height: 400px;
+    padding: 4px;
+    background-color: white;
+    display: inline-block;
+    z-index: 5;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    transition: background-color 0.25s;
+}
+
+.pianoWhiteKey:hover {
+    background-color: #0a56a3;
+    cursor: pointer;
+}
+
+.blackKeys {
+    position: absolute;
+    display: block;
+    min-width: 900px;
+    width: 900px;
+    max-width: 900px;
+    text-align: center;
+    justify-content: center;
+    z-index: 1;
+    top: 0px;
+    height: 220px;
+    border-left: solid 10px #daa520;
+    border-right: solid 10px #daa520;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    transition: background-color 0.25s;
+}
+
+.pianoBlackKey {
+    width: 35px;
+    height: 250px;
+    color: black;
+    background-color: black;
+    display: inline-block;
+    z-index: 6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pianoBlackKey:hover {
+    background-color: #0a56a3;
+    cursor: pointer;
+}
+
+/*for positioning of the black keys */
+
+.black {
+    position: absolute;
+    left: 50px;
+}
+
+.black1 {
+    position: absolute;
+    left: 112px;
+}
+
+.black2 {
+    position: absolute;
+    left: 237px;
+}
+
+.black3 {
+    position: absolute;
+    left: 298px;
+}
+
+.black4 {
+    position: absolute;
+    left: 361px;
+}
+
+.black5 {
+    position: absolute;
+    left: 484px;
+}
+
+.black6 {
+    position: absolute;
+    left: 547px;
+}
+
+.black7 {
+    position: absolute;
+    left: 671px;
+}
+
+.black8 {
+    positioN: absolute;
+    left: 734px;
+}
+
+.black9 {
+    position: absolute;
+    left: 795px;
+}
+
+img {
+    display: none;
+}
+
+.minDesc {
+    width: 150px;
+    font-family: Oxygen;
+    font-size: 30px;
+    position: absolute;
+    right: 360px;
+    bottom: -280px;
+    color: black;
+}
+
+.minSwitch {
+    position: absolute;
+    bottom: -280px;
+    right: 330px;
+}
+
+.debug {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
+.generatedProgression {
+    width: 400px;
+    position: absolute;
+    left: 0px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.progDesc {
+    width: 400px;
+    font-family: Oxygen;
+    font-size: 35px;
+    color: white;
+}
+
+.progChords {
+    width: 300px;
+    font-family: Oxygen;
+    font-size: 30px;
+    color: white;
+    display: none;
+}
+
+.generatedKey {
+    width: 200px;
+    position: absolute;
+    right: 0px;
+    border-radius: 10px;
+}
+
+.progKey {
+    width: 200px;
+    font-family: Oxygen;
+    font-size: 35px;
+    color: white;
+    font-weight: 700;
+}
+
+.genKey {
+    width: 200px;
+    font-family: Oxygen;
+    font-size: 30px;
+    color: white;
+    display: none;
+}
+
+#debugMenu {
+    display: none;
+    line-height: 60px;
+    margin-top: 20px;
+}
+
+#debugText {
+    display: none;
+    line-height: 20px;
+    font-family: Oxygen;
+}
+
+h1 {
+    text-align: center;
+    font-family: Oxygen;
+    font-size: 60px;
+    line-height: 20px;
+    text-decoration: underline;
+}
+
+.todo {
+    text-align: center;
+    font-family: Oxygen;
+    font-size: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 100px;
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.copyright {
+    font-family: Oxygen;
+    font-size: 20px;
+    width: 300px;
+    text-decoration: none;
+    color: black;
+    border-top: 2px solid #8b8680;
+    padding-top: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.jmountford {
+    font-family: Oxygen;
+    font-size: 20px;
+    width: 300px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid #8b8680;
+    padding-bottom: 20px;
+    display: inline-block;
+    transition: font-size 0.5s, width 0.5s;
+}
+
+.jmountford:hover {
+    font-size: 25px;
+    width: 300px;
+}
+
+@keyframes highlight {
+    0% {
+        font-size: 20px;
+        color: black;
+        width: 300px;
+    }
+
+    100% {
+        font-size: 25px;
+        color: navy;
+        width: 310px;
+    }
+}
+
+.bigWrapper {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.wrapper {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+}
+
+.currentlyPlaying {
+    background-color: #9B111E;
+}
+
+@media screen and (max-width: 950px) {
+    .bigPianoWrap {
+        margin: 0 auto;
+        width: 95%;
+        text-align: center;
+        background: linear-gradient(to top, white, black);
+    }
+
+    .pianoWrap {
+        margin: 0 auto;
+        width: 95%;
+        text-align: center;
+        min-width: 350px;
+        max-width: 100%;
+        position: relative;
+    }
+
+    .pianoWhiteKey {
+        width: 12px;
+        height: 150px;
+    }
+
+    .pianoBlackKey {
+        width: 11px;
+        height: 90px;
+    }
+
+    .blackKeys {
+        position: absolute;
+        display: block;
+        min-width: 350px;
+        width: 100%;
+        max-width: 100%;
+
+    }
+
+    .black {
+        position: relative;
+        left: -87px;
+    }
+
+    .black1 {
+        position: relative;
+        left: -77px;
+    }
+
+    .black2 {
+        position: relative;
+        left: -44px;
+    }
+
+    .black3 {
+        position: relative;
+        left: -35px;
+    }
+
+    .black4 {
+        position: relative;
+        left: -26px;
+    }
+
+    .black5 {
+        position: relative;
+        left: 7px;
+    }
+
+    .black6 {
+        position: relative;
+        left: 16px;
+    }
+
+    .black7 {
+        position: relative;
+        left: 49px;
+    }
+
+    .black8 {
+        position: relative;
+        left: 58px;
+    }
+
+    .black9 {
+        position: relative;
+        left: 67px;
+    }
+
+    .generatedProgression {
+        width: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    .progDesc {
+        width: 100%;
+        font-size: 25px;
+        text-align: center;
+        margin-top: 170px;
+        font-weight: 300;
+    }
+
+    .progChords {
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .generatedKey {
+        width: 100%;
+        text-align: center;
+        position: relative;
+    }
+
+    .progKey {
+        width: 100%;
+        text-align: center;
+        font-size: 25px;
+        font-weight: 300;
+    }
+
+    .genKey {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .play {
+        left: 0;
+        top: -390px;
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+    }
+
+    .playDesc {
+        width: 100%;
+        font-size: 25px;
+        position: absolute;
+        height: 50px;
+        left: 0px;
+        text-align: center;
+        top: 175px;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+
+    #debugMenu {
+        display: none;
+        line-height: 60px;
+        margin-top: 20px;
+    }
+
+    #debugText {
+        display: none;
+        line-height: 20px;
+        font-family: Oxygen;
+    }
+
+    .debug {
+        display: none;
+    }
+
+    .minDesc {
+        font-size: 25px;
+        position: absolute;
+        text-align: center;
+        bottom: 125px;
+        font-weight: 300;
+        position: absolute;
+        left: 30%;
+        bottom: 25px;
+        color: white;
+    }
+
+    .minSwitch {
+        position: absolute;
+        bottom: -15px;
+        left: 40%;
+        width: 20px;
+    }
+
+    html {
+        width: 100%;
+    }
+}
+
+.genIndChords {
+    color: black;
+    display: inline-flex;
+    width: 500px;
+    height: 70px;
+}
+
+.chordz {
+    width: 100px;
+    margin: 4px;
+    font-family: Oxygen;
+    font-size: 40px;
+    color: black;
+    opacity: 0%;
+    color: black;
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.5)
+}
+
+.fadeInAnimation {
+    animation: fadeIn;
+    animation-duration: 2000ms;
+    animation-fill-mode: forwards;
+}
+
+.fadeOutAnimation {
+    animation: fadeOut;
+    animation-duration: 100ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.treble {
+    font-size: 600px;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    z-index: 1;
+    line-height: 600px;
+    margin: 0px;
+    opacity: 70%;
+}
+
+.bass {
+    font-size: 700px;
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    z-index: 1;
+    line-height: 700px;
+    margin: 0px;
+    opacity: 20%;
+}
+
+@keyframes clefFadeIn {
+    0% {
+        opacity: 20%;
+    }
+
+    100% {
+        opacity: 70%;
+    }
+}
+
+@keyframes clefFadeOut {
+    0% {
+        opacity: 70%;
+    }
+
+    100% {
+        opacity: 20%;
+    }
+}
+
+.clefFadeIn {
+    animation: clefFadeIn;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.clefFadeOut {
+    animation: clefFadeOut;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+.selectedKey {
+    width: 100px;
+    margin: 4px;
+    font-family: Oxygen;
+    font-size: 40px;
+    color: black;
+    color: black;
+    border-radius: 10px;
+    font-weight: 700;
+    opacity: 0%;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width: 950px) {
+    .treble {
+        font-size: 300px;
+        position: absolute;
+        top: 100px;
+        left: 5%;
+        line-height: 200px;
+    }
+
+    .bass {
+        font-size: 250px;
+        position: absolute;
+        top: 120px;
+        right: 0%;
+        z-index: 1;
+        line-height: 200px;
+    }
+}
+
+.flat {
+    font-size: 30px;
+    width: 10px;
+    position: relative;
+    bottom: 0;
+    left: 55%;
+    z-index: 20;
+    opacity: 0;
+}
+
+.flatAnimation {
+    animation: Flat;
+    animation-duration: 0.45s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes Flat {
+    0% {
+        bottom: 0;
+        left: 55%;
+        opacity: 0%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        bottom: 60px;
+        left: 45%;
+        opacity: 100%;
+        transform: rotate(200deg);
+    }
+}
+
+.sharp {
+    font-size: 30px;
+    width: 10px;
+    position: relative;
+    bottom: 100px;
+    left: 55%;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sharpAnimation {
+    animation: Sharp;
+    animation-duration: 0.35s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes Sharp {
+    0% {
+        bottom: 100px;
+        left: 55%;
+        opacity: 0%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        bottom: 10px;
+        left: 46%;
+        opacity: 100%;
+        transform: rotate(250deg);
+    }
+}
+
+.sixteenth {
+    font-size: 30px;
+    width: 10px;
+    position: relative;
+    bottom: 150px;
+    left: 60%;
+    z-index: 20;
+    opacity: 0;
+}
+
+.sixteenthAnimation {
+    animation: Sixteenth;
+    animation-fill-mode: forwards;
+    animation-duration: 0.45s;
+}
+
+@keyframes Sixteenth {
+    0% {
+        bottom: 150px;
+        left: 60%;
+        opacity: 0%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        bottom: 100px;
+        left: 68%;
+        opacity: 100%;
+        transform: rotate(290deg);
+    }
+}
+
+.sixteenthRest {
+    font-size: 30px;
+    width: 10px;
+    position: relative;
+    bottom: 200px;
+    left: 60%;
+    z-index: 20;
+    opacity: 0%;
+}
+
+.sixthRestAnimation {
+    animation: sixthRest;
+    animation-duration: 0.35s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes sixthRest {
+    0% {
+        bottom: 200px;
+        left: 60%;
+        opacity: 0%;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        bottom: 270px;
+        left: 70%;
+        opacity: 100%;
+        transform: rotate(60deg);
+    }
+}

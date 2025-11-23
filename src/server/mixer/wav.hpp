@@ -4,6 +4,7 @@
 #include <vector>
 #include <filesystem>
 
+// Simple struct to hold our .wav filedata
 struct WavFile {
     uint32_t file_size;
     uint16_t audio_format;
@@ -17,12 +18,13 @@ struct WavFile {
     double duration;
 };
 
+// function to load the file data of a .wav into above struct from specified file
 WavFile load_wav(const std::filesystem::path& path);
 
+// function to write a new wav file to the filesystem
+void write_wav(WavFile& wav, std::string output_file = "..\\..\\generated\\wav\\new_wav.wav");
 
-void write_wav(WavFile& wav);
-
-
+// function to print out some metadata about .wav files in a target directoryt
 void read_wav_metadata(std::string target_directory);
 
 #endif

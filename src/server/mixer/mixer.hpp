@@ -17,4 +17,7 @@ bool ensure_mixable(const std::vector<WavFile>& wav_files);
 // function to find the smallest .wav in a vector of .wav
 size_t find_output_length(const std::vector<WavFile>& wav_files);
 
+// function to combine chords into a single .wav
+WavFile append_adjacent_wav(std::vector<WavFile>& wav_files);
+
 #endif

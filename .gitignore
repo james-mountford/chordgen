@@ -1,3 +1,6 @@
 venv_chordgen/*
 __pycache__/
 *.exe
+*.lib
+*.exp
+*.obj

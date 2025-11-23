@@ -106,8 +106,7 @@ WavFile load_wav(const std::filesystem::path& path) {
     return wav;
 }
 
-void write_wav(WavFile& wav) {
-    std::string output_file = "..\\..\\soundfiles\\new_wav.wav";
+void write_wav(WavFile& wav, std::string output_file = "..\\..\\generated\\wav\\new_wav.wav") {
     std::ofstream out(output_file, std::ios::binary);
 
     if (!out.is_open()) {

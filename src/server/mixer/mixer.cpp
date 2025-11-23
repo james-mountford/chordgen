@@ -4,6 +4,36 @@
 #include "mixer.hpp"
 #include "wav.hpp"
 
+WavFile append_adjacent_wav(std::vector<WavFile>& wav_files) {
+    if (wav_files.size() == 0) throw MixerError("Must pass in at least one file");
+    if (wav_files.size() < 2) return wav_files[0];
+    
+    WavFile new_wav;
+
+    // Combined the pcm data for each of the wav; assume implied sequence ordering
+    for (size_t i = 0; i < wav_files.size(); i++) {
+        for (size_t j = 0; j < wav_files[i].pcm.size(); j++) {
+            new_wav.pcm.push_back(wav_files[i].pcm[j]);
+        } 
+    }
+    size_t total_samples = new_wav.pcm.size();
+
+    // Invariant that merge_wav would have caught and thrown for dissimilarities among wav
+    new_wav.sample_rate = wav_files[0].sample_rate;
+    new_wav.bits_per_sample = wav_files[0].bits_per_sample;
+    new_wav.num_channels = wav_files[0].num_channels;
+    new_wav.block_align = wav_files[0].block_align;
+    new_wav.audio_format = wav_files[0].audio_format;
+    
+    // calculate the duration, pcm data size, and file size
+    new_wav.byte_rate = new_wav.sample_rate * new_wav.num_channels * (new_wav.bits_per_sample / 8);
+    new_wav.pcm_data_size = total_samples * (new_wav.bits_per_sample / 8);
+    new_wav.file_size = new_wav.pcm_data_size + 36;
+    new_wav.duration = double(total_samples) / (new_wav.sample_rate * new_wav.num_channels);
+
+    return new_wav;
+}
+
 WavFile merge_two_wav(WavFile wav_1, WavFile wav_2) {
     // Ensure sample rate, bit depth, and num channels are equivalent
     if (wav_1.sample_rate != wav_2.sample_rate) {

@@ -1012,107 +1012,85 @@ function debugMenu() {
 
 /* event listeners for the piano keys, for click functions */
 
+// html_id_array = []
+// for (i = 0; i < html_id_array.length; i++) {
+//     document.
+// }
+
+const removeAnimation = (event) => {
+    const ANIMATION_FADEOUT_DURATION = 2050;
+    setTimeout(function() {
+        event.target.classList.remove('currentlyPlaying');
+    }, ANIMATION_FADEOUT_DURATION)
+}
+
 document.getElementById("pianoBassC").addEventListener("click", function (e) {
     bassC();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassCSharp").addEventListener("click", function (e) {
     bassCSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassD").addEventListener("click", function (e) {
     bassD();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassDSharp").addEventListener("click", function (e) {
     bassDSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassE").addEventListener("click", function (e) {
     bassE();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassF").addEventListener("click", function (e) {
     bassF();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassFSharp").addEventListener("click", function (e) {
     bassFSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassG").addEventListener("click", function (e) {
     bassG();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassGSharp").addEventListener("click", function (e) {
     bassGSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassA").addEventListener("click", function (e) {
     bassA();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassASharp").addEventListener("click", function (e) {
     bassASharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoBassB").addEventListener("click", function (e) {
     bassB();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteC").addEventListener("click", function (e) {
     noteC();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteCSharp").addEventListener("click", function (e) {
     noteCSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteD").addEventListener("click", function (e) {
     noteD();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteDSharp").addEventListener("click", function (e) {
     noteDSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteE").addEventListener("click", function (e) {
     noteE();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteF").addEventListener("click", function (e) {
     noteF();
@@ -1122,37 +1100,25 @@ document.getElementById("pianoNoteF").addEventListener("click", function (e) {
 });
 document.getElementById("pianoNoteFSharp").addEventListener("click", function (e) {
     noteFSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteG").addEventListener("click", function (e) {
     noteG();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteGSharp").addEventListener("click", function (e) {
     noteGSharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteA").addEventListener("click", function (e) {
     noteA();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteASharp").addEventListener("click", function (e) {
     noteASharp();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });
 document.getElementById("pianoNoteB").addEventListener("click",  function (e) {
     noteB();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
+    removeAnimation(e);
 });

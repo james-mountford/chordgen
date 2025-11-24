@@ -1,217 +1,187 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chord Progression Generator</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Noto+Music&family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/static/chordgen.css">
-        <script src="/static/chordgen.js" defer></script>
-    </head>
-    
-    <header>
-    </header>
-    
-    <body>
-        
-        <!-- this is the test code I'm building to have an interactive piano on the webpage -->
-        <div class="bigPianoWrap">
-            <div class="pianoWrap">
-                
-                <div id="pianoBassC" class="pianoWhiteKey white"></div>
-                <div id="pianoBassD" class="pianoWhiteKey white1"></div>
-                <div id="pianoBassE" class="pianoWhiteKey white2"></div>
-                <div id="pianoBassF" class="pianoWhiteKey white3"></div>
-                <div id="pianoBassG" class="pianoWhiteKey white4"></div>
-                <div id="pianoBassA" class="pianoWhiteKey white5"></div>
-                <div id="pianoBassB" class="pianoWhiteKey white6"></div>
-                <div id="pianoNoteC" class="pianoWhiteKey white7"></div>
-                <div id="pianoNoteD" class="pianoWhiteKey white8"></div>
-                <div id="pianoNoteE" class="pianoWhiteKey white9"></div>
-                <div id="pianoNoteF" class="pianoWhiteKey white10"></div>
-                <div id="pianoNoteG" class="pianoWhiteKey white11"></div>
-                <div id="pianoNoteA" class="pianoWhiteKey white12"></div>
-                <div id="pianoNoteB" class="pianoWhiteKey white13"></div>
-                
-                <div class="blackKeys">    
-                    <div id="pianoBassCSharp" class="pianoBlackKey black"></div>
-                    <div id="pianoBassDSharp" class="pianoBlackKey black1"></div>
-                    <div id="pianoBassFSharp" class="pianoBlackKey black2"></div>
-                    <div id="pianoBassGSharp" class="pianoBlackKey black3"></div>
-                    <div id="pianoBassASharp" class="pianoBlackKey black4"></div>
-                    <div id="pianoNoteCSharp" class="pianoBlackKey black5"></div>
-                    <div id="pianoNoteDSharp" class="pianoBlackKey black6"></div>
-                    <div id="pianoNoteFSharp" class="pianoBlackKey black7"></div>
-                    <div id="pianoNoteGSharp" class="pianoBlackKey black8"></div>
-                    <div id="pianoNoteASharp" class="pianoBlackKey black9"></div>
-                    
-                    
-                </div>
-                
-        <p class="playDesc" hidden>Press to generate and play a chord progression!</p>
-                <div class="popProg">
-                    <a class="minDesc">Pop:</a>
-                    <div class="minSwitch">
-                        <label class="switch">
-                            <input id="popSlider" type="checkbox">
-                            <span class="popSwitch slider round"></span>
-                    </label>
-            </div>
-                </div>
-                <a class="button debug" href="javascript:debugMenu()" hidden>Debug View</a>
-        <div class="generatedProgression">
-            <p class="progDesc">Progression:</p>
-                <p class="progChords" id="progression"></p>
-            <div class="genIndChords">
-                <p id="chordOne" class="chordz">A</p>
-                <p id="chordTwo" class="chordz">B</p>
-                <p id="chordThree" class="chordz">C</p>
-                <p id="chordFour" class="chordz">D</p>
-                <p id="chordFive" class="chordz">E</p>
-                <p id="chordSix" class="chordz">F</p>
-                <p id="chordSeven" class="chordz">F</p>
-                <p id="chordEight" class="chordz">F</p>
-            </div>
-                </div>
-                <div class="generatedKey">
-            <p class="progKey">Key:</p>
-                <p class="genKey" id="key"></p>
-                    <p id="selectedKey" class="selectedKey">Test</p>
-                </div>
-                <a class="button play" id="play" href="javascript:play()">Generate!</a>
-        
-        </div>
-            <p id="treble" class="treble">&#119070;</p>
-            <p id="bass" class="bass">&#119074;</p>
-            <p id="flat" class="flat">&flat;</p>
-            <p id="sharp" class="sharp">&#x266F;</p>
-            <p id="sixteenth" class="sixteenth">&#119137;</p>
-            <p id="sixteenthRest" class="sixteenthRest">&#119103;</p>
-        </div>
-        <div id="debugMenu" class="debugMenu">
-        <a class="button" href="javascript:keyGen()">keyGen()</a>
-        <a class="button" href="javascript:keySelect()">keySelect()</a>
-        <a class="button" href="javascript:progGen()">progGen()</a>
-        <a class="button" href="javascript:getChords()">getChords()</a>
-        <a class="button" href="javascript:assignChords()">assignChords()</a>
-        <a class="button" href="javascript:assignNotes()">assignNotes()</a>
-        <a class="button" id="notes" href="javascript:playNotes()">playNotes()</a>
-        <a class="button" id="notes" href="javascript:bassC()">bassC()</a>
-        <a class="button" id="chords" href="javascript:playChords()">playChords()</a>
-        </div>
-        <br><br>
-        <a class="minor">Check for a minor progression:</a>
-        <label class="switch">
-            <input class="minor" id="minSlider" type="checkbox">
-            <span class="minor" class="slider round"></span>
-        </label>
-        <div id="debugText">
-        <p id="RNG">RNG</p>
-        <p id="chordArrays">Chord Arrays</p>
-            <p class="debugDesc">Open the browser console to view a lot of debug info, view currently filled data, etc.</p>
-        </div>
 
-        <audio id="generated-progression" controls>
-            <source id="generated-progression-source" src="" type="audio/wav">
-        </audio>
-        
-        <!-- these are the audio files that are loaded and necessary for execution-->
-            <!-- bass notes -->
-        <audio id="bassC">
-            <source src="/static/soundfiles/C3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassCSharp">
-            <source src="/static/soundfiles/C%233.wav" type="audio/wav">
-        </audio>
-        <audio id="bassD">
-            <source src="/static/soundfiles/D3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassDSharp">
-            <source src="/static/soundfiles/D%233.wav" type="audio/wav">
-        </audio>
-        <audio id="bassE">
-            <source src="/static/soundfiles/E3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassF">
-            <source src="/static/soundfiles/F3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassFSharp">
-            <source src="/static/soundfiles/F%233.wav" type="audio/wav">
-        </audio>
-        <audio id="bassG">
-            <source src="/static/soundfiles/G3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassGSharp">
-            <source src="/static/soundfiles/G%233.wav" type="audio/wav">
-        </audio>
-        <audio id="bassA">
-            <source src="/static/soundfiles/A3.wav" type="audio/wav">
-        </audio>
-        <audio id="bassASharp">
-            <source src="/static/soundfiles/A%233.wav" type="audio/wav">
-        </audio>
-        <audio id="bassB">
-            <source src="/static/soundfiles/B3.wav" type="audio/wav">
-        </audio>
-        
-        <!-- these are the chord notes -->
-        
-        <audio id="noteC">
-            <source src="/static/soundfiles/C4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteCSharp">
-            <source src="/static/soundfiles/C%234.wav" type="audio/wav">
-        </audio>
-        <audio id="noteD">
-            <source src="/static/soundfiles/D4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteDSharp">
-            <source src="/static/soundfiles/D%234.wav" type="audio/wav">
-        </audio>
-        <audio id="noteE">
-            <source src="/static/soundfiles/E4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteF">
-            <source src="/static/soundfiles/F4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteFSharp">
-            <source src="/static/soundfiles/F%234.wav" type="audio/wav">
-        </audio>
-        <audio id="noteG">
-            <source src="/static/soundfiles/G4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteGSharp">
-            <source src="/static/soundfiles/G%234.wav" type="audio/wav">
-        </audio>
-        <audio id="noteA">
-            <source src="/static/soundfiles/A4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteASharp">
-            <source src="/static/soundfiles/A%234.wav" type="audio/wav">
-        </audio>
-        <audio id="noteB">
-            <source src="/static/soundfiles/B4.wav" type="audio/wav">
-        </audio>
-        <audio id="noteC1">
-            <source src="/static/soundfiles/C5.wav" type="audio/wav">
-        </audio>
-        
-        <footer>
-        <div class="bigWrapper">
-        <div class="wrapper">
-            <p class="copyright">&#169;2022, JM.</p>
-            
-        <a class="jmountford" target="blank" href="https://jmountford.dev">jmountford.dev</a>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord Progression Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Noto+Music&family=Oxygen:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/chordgen.css">
+    <script type="module" src="/static/js/chordgen.js" defer></script>
+</head>
+
+<body>
+
+    <!-- this is the test code I'm building to have an interactive piano on the webpage -->
+    <div class="bigPianoWrap">
+        <div class="pianoWrap">
+
+            <div class="white-keys">
+                <div id="C3-key" class="white-key white"></div>
+                <div id="D3-key" class="white-key white1"></div>
+                <div id="E3-key" class="white-key white2"></div>
+                <div id="F3-key" class="white-key white3"></div>
+                <div id="G3-key" class="white-key white4"></div>
+                <div id="A3-key" class="white-key white5"></div>
+                <div id="B3-key" class="white-key white6"></div>
+                <div id="C4-key" class="white-key white7"></div>
+                <div id="D4-key" class="white-key white8"></div>
+                <div id="E4-key" class="white-key white9"></div>
+                <div id="F4-key" class="white-key white10"></div>
+                <div id="G4-key" class="white-key white11"></div>
+                <div id="A4-key" class="white-key white12"></div>
+                <div id="B4-key" class="white-key white13"></div>
+            </div>
+
+            <div class="black-keys">
+                <div id="C#3-key" class="black-key black"></div>
+                <div id="D#3-key" class="black-key black1"></div>
+                <div id="F#3-key" class="black-key black2"></div>
+                <div id="G#3-key" class="black-key black3"></div>
+                <div id="A#3-key" class="black-key black4"></div>
+                <div id="C#4-key" class="black-key black5"></div>
+                <div id="D#4-key" class="black-key black6"></div>
+                <div id="F#4-key" class="black-key black7"></div>
+                <div id="G#4-key" class="black-key black8"></div>
+                <div id="A#4-key" class="black-key black9"></div>
+            </div>
+
+            <div class="popProg">
+                <a class="minDesc">Pop:</a>
+                <div class="minSwitch">
+                    <label class="switch">
+                        <input id="pop-slider" type="checkbox">
+                        <span class="popSwitch slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="generatedProgression">
+                <p class="progDesc">Progression:</p>
+                <p class="progChords" id="progression"></p>
+                <div class="genIndChords">
+                    <p id="chord1" class="chordz"></p>
+                    <p id="chord2" class="chordz"></p>
+                    <p id="chord3" class="chordz"></p>
+                    <p id="chord4" class="chordz"></p>
+                    <p id="chord5" class="chordz"></p>
+                    <p id="chord6" class="chordz"></p>
+                </div>
+            </div>
+            <div class="generatedKey">
+                <p class="progKey">Key:</p>
+                <p id="selectedKey" class="selectedKey"></p>
+            </div>
+            <a class="button play" id="generate-button">Generate!</a>
+
         </div>
+        <p id="treble" class="treble">&#119070;</p>
+        <p id="bass" class="bass">&#119074;</p>
+        <p id="flat" class="flat">&flat;</p>
+        <p id="sharp" class="sharp">&#x266F;</p>
+        <p id="sixteenth" class="sixteenth">&#119137;</p>
+        <p id="sixteenthRest" class="sixteenthRest">&#119103;</p>
+    </div>
+
+    <a class="minor">Check for a minor progression:</a>
+    <label class="switch">
+        <input class="minor" id="minor-slider" type="checkbox">
+        <span class="minor" class="slider round"></span>
+    </label>
+
+    <audio id="generated-progression" controls style="display:none">
+        <source id="generated-progression-source" src="" type="audio/wav">
+    </audio>
+
+    <audio id="C3-audio">
+        <source src="/static/soundfiles/C3.wav" type="audio/wav">
+    </audio>
+    <audio id="C#3-audio">
+        <source src="/static/soundfiles/C%233.wav" type="audio/wav">
+    </audio>
+    <audio id="D3-audio">
+        <source src="/static/soundfiles/D3.wav" type="audio/wav">
+    </audio>
+    <audio id="D#3-audio">
+        <source src="/static/soundfiles/D%233.wav" type="audio/wav">
+    </audio>
+    <audio id="E3-audio">
+        <source src="/static/soundfiles/E3.wav" type="audio/wav">
+    </audio>
+    <audio id="F3-audio">
+        <source src="/static/soundfiles/F3.wav" type="audio/wav">
+    </audio>
+    <audio id="F#3-audio">
+        <source src="/static/soundfiles/F%233.wav" type="audio/wav">
+    </audio>
+    <audio id="G3-audio">
+        <source src="/static/soundfiles/G3.wav" type="audio/wav">
+    </audio>
+    <audio id="G#3-audio">
+        <source src="/static/soundfiles/G%233.wav" type="audio/wav">
+    </audio>
+    <audio id="A3-audio">
+        <source src="/static/soundfiles/A3.wav" type="audio/wav">
+    </audio>
+    <audio id="A#3-audio">
+        <source src="/static/soundfiles/A%233.wav" type="audio/wav">
+    </audio>
+    <audio id="B3-audio">
+        <source src="/static/soundfiles/B3.wav" type="audio/wav">
+    </audio>
+    
+    <audio id="C4-audio">
+        <source src="/static/soundfiles/C4.wav" type="audio/wav">
+    </audio>
+    <audio id="C#4-audio">
+        <source src="/static/soundfiles/C%234.wav" type="audio/wav">
+    </audio>
+    <audio id="D4-audio">
+        <source src="/static/soundfiles/D4.wav" type="audio/wav">
+    </audio>
+    <audio id="D#4-audio">
+        <source src="/static/soundfiles/D%234.wav" type="audio/wav">
+    </audio>
+    <audio id="E4-audio">
+        <source src="/static/soundfiles/E4.wav" type="audio/wav">
+    </audio>
+    <audio id="F4-audio">
+        <source src="/static/soundfiles/F4.wav" type="audio/wav">
+    </audio>
+    <audio id="F#4-audio">
+        <source src="/static/soundfiles/F%234.wav" type="audio/wav">
+    </audio>
+    <audio id="G4-audio">
+        <source src="/static/soundfiles/G4.wav" type="audio/wav">
+    </audio>
+    <audio id="G#4-audio">
+        <source src="/static/soundfiles/G%234.wav" type="audio/wav">
+    </audio>
+    <audio id="A4-audio">
+        <source src="/static/soundfiles/A4.wav" type="audio/wav">
+    </audio>
+    <audio id="A#4-audio">
+        <source src="/static/soundfiles/A%234.wav" type="audio/wav">
+    </audio>
+    <audio id="B4-audio">
+        <source src="/static/soundfiles/B4.wav" type="audio/wav">
+    </audio>
+    <audio id="C5-audio">
+        <source src="/static/soundfiles/C5.wav" type="audio/wav">
+    </audio>
+
+    <footer>
+        <div class="bigWrapper">
+            <div class="wrapper">
+                <p class="copyright">&#169;2022-2025</p>
+                <a class="jmountford" target="blank" href="https://jmountford.dev">jmountford.dev</a>
+            </div>
         </div>
     </footer>
-        
-    </body>
-    
-    
-    
-    
+
+</body>
 
 </html>

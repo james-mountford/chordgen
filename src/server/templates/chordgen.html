@@ -20,34 +20,32 @@
         <div class="bigPianoWrap">
             <div class="pianoWrap">
                 
-                <div id="pianoBassC" class="pianoWhiteKey white"></div>
-                <div id="pianoBassD" class="pianoWhiteKey white1"></div>
-                <div id="pianoBassE" class="pianoWhiteKey white2"></div>
-                <div id="pianoBassF" class="pianoWhiteKey white3"></div>
-                <div id="pianoBassG" class="pianoWhiteKey white4"></div>
-                <div id="pianoBassA" class="pianoWhiteKey white5"></div>
-                <div id="pianoBassB" class="pianoWhiteKey white6"></div>
-                <div id="pianoNoteC" class="pianoWhiteKey white7"></div>
-                <div id="pianoNoteD" class="pianoWhiteKey white8"></div>
-                <div id="pianoNoteE" class="pianoWhiteKey white9"></div>
-                <div id="pianoNoteF" class="pianoWhiteKey white10"></div>
-                <div id="pianoNoteG" class="pianoWhiteKey white11"></div>
-                <div id="pianoNoteA" class="pianoWhiteKey white12"></div>
-                <div id="pianoNoteB" class="pianoWhiteKey white13"></div>
+                <div id="C3-key" class="pianoWhiteKey white"></div>
+                <div id="D3-key" class="pianoWhiteKey white1"></div>
+                <div id="E3-key" class="pianoWhiteKey white2"></div>
+                <div id="F3-key" class="pianoWhiteKey white3"></div>
+                <div id="G3-key" class="pianoWhiteKey white4"></div>
+                <div id="A3-key" class="pianoWhiteKey white5"></div>
+                <div id="B3-key" class="pianoWhiteKey white6"></div>
+                <div id="C4-key" class="pianoWhiteKey white7"></div>
+                <div id="D4-key" class="pianoWhiteKey white8"></div>
+                <div id="E4-key" class="pianoWhiteKey white9"></div>
+                <div id="F4-key" class="pianoWhiteKey white10"></div>
+                <div id="G4-key" class="pianoWhiteKey white11"></div>
+                <div id="A4-key" class="pianoWhiteKey white12"></div>
+                <div id="B4-key" class="pianoWhiteKey white13"></div>
                 
                 <div class="blackKeys">    
-                    <div id="pianoBassCSharp" class="pianoBlackKey black"></div>
-                    <div id="pianoBassDSharp" class="pianoBlackKey black1"></div>
-                    <div id="pianoBassFSharp" class="pianoBlackKey black2"></div>
-                    <div id="pianoBassGSharp" class="pianoBlackKey black3"></div>
-                    <div id="pianoBassASharp" class="pianoBlackKey black4"></div>
-                    <div id="pianoNoteCSharp" class="pianoBlackKey black5"></div>
-                    <div id="pianoNoteDSharp" class="pianoBlackKey black6"></div>
-                    <div id="pianoNoteFSharp" class="pianoBlackKey black7"></div>
-                    <div id="pianoNoteGSharp" class="pianoBlackKey black8"></div>
-                    <div id="pianoNoteASharp" class="pianoBlackKey black9"></div>
-                    
-                    
+                    <div id="C#3-key" class="pianoBlackKey black"></div>
+                    <div id="D#3-key" class="pianoBlackKey black1"></div>
+                    <div id="F#3-key" class="pianoBlackKey black2"></div>
+                    <div id="G#3-key" class="pianoBlackKey black3"></div>
+                    <div id="A#3-key" class="pianoBlackKey black4"></div>
+                    <div id="C#4-key" class="pianoBlackKey black5"></div>
+                    <div id="D#4-key" class="pianoBlackKey black6"></div>
+                    <div id="F#4-key" class="pianoBlackKey black7"></div>
+                    <div id="G#4-key" class="pianoBlackKey black8"></div>
+                    <div id="A#4-key" class="pianoBlackKey black9"></div>
                 </div>
                 
         <p class="playDesc" hidden>Press to generate and play a chord progression!</p>
@@ -119,82 +117,82 @@
         
         <!-- these are the audio files that are loaded and necessary for execution-->
             <!-- bass notes -->
-        <audio id="bassC">
+        <audio id="C3-audio">
             <source src="/static/soundfiles/C3.wav" type="audio/wav">
         </audio>
-        <audio id="bassCSharp">
+        <audio id="C#3-audio">
             <source src="/static/soundfiles/C%233.wav" type="audio/wav">
         </audio>
-        <audio id="bassD">
+        <audio id="D3-audio">
             <source src="/static/soundfiles/D3.wav" type="audio/wav">
         </audio>
-        <audio id="bassDSharp">
+        <audio id="D#3-audio">
             <source src="/static/soundfiles/D%233.wav" type="audio/wav">
         </audio>
-        <audio id="bassE">
+        <audio id="E3-audio">
             <source src="/static/soundfiles/E3.wav" type="audio/wav">
         </audio>
-        <audio id="bassF">
+        <audio id="F3-audio">
             <source src="/static/soundfiles/F3.wav" type="audio/wav">
         </audio>
-        <audio id="bassFSharp">
+        <audio id="F#3-audio">
             <source src="/static/soundfiles/F%233.wav" type="audio/wav">
         </audio>
-        <audio id="bassG">
+        <audio id="G3-audio">
             <source src="/static/soundfiles/G3.wav" type="audio/wav">
         </audio>
-        <audio id="bassGSharp">
+        <audio id="GE3-audio">
             <source src="/static/soundfiles/G%233.wav" type="audio/wav">
         </audio>
-        <audio id="bassA">
+        <audio id="A3-audio">
             <source src="/static/soundfiles/A3.wav" type="audio/wav">
         </audio>
-        <audio id="bassASharp">
+        <audio id="A#3-audio">
             <source src="/static/soundfiles/A%233.wav" type="audio/wav">
         </audio>
-        <audio id="bassB">
+        <audio id="B3-audio">
             <source src="/static/soundfiles/B3.wav" type="audio/wav">
         </audio>
         
         <!-- these are the chord notes -->
         
-        <audio id="noteC">
+        <audio id="C4-audio">
             <source src="/static/soundfiles/C4.wav" type="audio/wav">
         </audio>
-        <audio id="noteCSharp">
+        <audio id="C#4-audio">
             <source src="/static/soundfiles/C%234.wav" type="audio/wav">
         </audio>
-        <audio id="noteD">
+        <audio id="D4-audio">
             <source src="/static/soundfiles/D4.wav" type="audio/wav">
         </audio>
-        <audio id="noteDSharp">
+        <audio id="D#4-audio">
             <source src="/static/soundfiles/D%234.wav" type="audio/wav">
         </audio>
-        <audio id="noteE">
+        <audio id="E4-audio">
             <source src="/static/soundfiles/E4.wav" type="audio/wav">
         </audio>
-        <audio id="noteF">
+        <audio id="F4-audio">
             <source src="/static/soundfiles/F4.wav" type="audio/wav">
         </audio>
-        <audio id="noteFSharp">
+        <audio id="F#4-audio">
             <source src="/static/soundfiles/F%234.wav" type="audio/wav">
         </audio>
-        <audio id="noteG">
+        <audio id="G4-audio">
             <source src="/static/soundfiles/G4.wav" type="audio/wav">
         </audio>
-        <audio id="noteGSharp">
+        <audio id="G#4-audio">
             <source src="/static/soundfiles/G%234.wav" type="audio/wav">
         </audio>
-        <audio id="noteA">
+        <audio id="A4-audio">
             <source src="/static/soundfiles/A4.wav" type="audio/wav">
         </audio>
-        <audio id="noteASharp">
+        <audio id="A#4-audio">
             <source src="/static/soundfiles/A%234.wav" type="audio/wav">
         </audio>
-        <audio id="noteB">
+        <audio id="B4-audio">
             <source src="/static/soundfiles/B4.wav" type="audio/wav">
         </audio>
-        <audio id="noteC1">
+        <audio id="C5-audio">
             <source src="/static/soundfiles/C5.wav" type="audio/wav">
         </audio>
         

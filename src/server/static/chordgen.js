@@ -1,3 +1,5 @@
+const ANIMATION_FADEOUT_DURATION = 2050;
+
 /* this is the random number function. */
 function keyGen() {
     keyNumber = Math.floor(Math.random() * 15);
@@ -701,139 +703,6 @@ function assignNotes() {
     // console.log(chord4Notes);
 }
 
-// function playNotes() {
-//     document.getElementById('bassCSharp').play();
-//     document.getElementById('noteCSharp').play();
-//     document.getElementById('noteF').play();
-//     document.getElementById('noteGSharp').play();
-// }
-
-//this is the block of functions that simplifies the calling/playing of the audio files
-function bassC() {
-    document.getElementById('bassC').play();
-    document.getElementById('pianoBassC').classList.add('currentlyPlaying')
-}
-
-function bassCSharp() {
-    document.getElementById('bassCSharp').play();
-    document.getElementById('pianoBassCSharp').classList.add('currentlyPlaying')
-}
-
-function bassD() {
-    document.getElementById('bassD').play();
-    document.getElementById('pianoBassD').classList.add('currentlyPlaying')
-}
-
-function bassDSharp() {
-    document.getElementById('bassDSharp').play();
-    document.getElementById('pianoBassDSharp').classList.add('currentlyPlaying')
-}
-
-function bassE() {
-    document.getElementById('bassE').play();
-    document.getElementById('pianoBassE').classList.add('currentlyPlaying')
-}
-
-function bassF() {
-    document.getElementById('bassF').play();
-    document.getElementById('pianoBassF').classList.add('currentlyPlaying')
-}
-
-function bassFSharp() {
-    document.getElementById('bassFSharp').play();
-    document.getElementById('pianoBassFSharp').classList.add('currentlyPlaying')
-}
-
-function bassG() {
-    document.getElementById('bassG').play();
-    document.getElementById('pianoBassG').classList.add('currentlyPlaying')
-}
-
-function bassGSharp() {
-    document.getElementById('bassGSharp').play();
-    document.getElementById('pianoBassGSharp').classList.add('currentlyPlaying')
-}
-
-function bassA() {
-    document.getElementById('bassA').play();
-    document.getElementById('pianoBassA').classList.add('currentlyPlaying')
-}
-
-function bassASharp() {
-    document.getElementById('bassASharp').play();
-    document.getElementById('pianoBassASharp').classList.add('currentlyPlaying')
-}
-
-function bassB() {
-    document.getElementById('bassB').play();
-    document.getElementById('pianoBassB').classList.add('currentlyPlaying')
-}
-
-function noteC() {
-    document.getElementById('noteC').play();
-    document.getElementById('pianoNoteC').classList.add('currentlyPlaying')
-}
-
-function noteCSharp() {
-    document.getElementById('noteCSharp').play();
-    document.getElementById('pianoNoteCSharp').classList.add('currentlyPlaying')
-}
-
-function noteD() {
-    document.getElementById('noteD').play();
-    document.getElementById('pianoNoteD').classList.add('currentlyPlaying')
-}
-
-function noteDSharp() {
-    document.getElementById('noteDSharp').play();
-    document.getElementById('pianoNoteDSharp').classList.add('currentlyPlaying')
-}
-
-function noteE() {
-    document.getElementById('noteE').play();
-    document.getElementById('pianoNoteE').classList.add('currentlyPlaying')
-}
-
-function noteF() {
-    document.getElementById('noteF').play();
-    document.getElementById('pianoNoteF').classList.add('currentlyPlaying')
-}
-
-function noteFSharp() {
-    document.getElementById('noteFSharp').play();
-    document.getElementById('pianoNoteFSharp').classList.add('currentlyPlaying')
-}
-
-function noteG() {
-    document.getElementById('noteG').play();
-    document.getElementById('pianoNoteG').classList.add('currentlyPlaying')
-}
-
-function noteGSharp() {
-    document.getElementById('noteGSharp').play();
-    document.getElementById('pianoNoteGSharp').classList.add('currentlyPlaying')
-}
-
-function noteA() {
-    document.getElementById('noteA').play();
-    document.getElementById('pianoNoteA').classList.add('currentlyPlaying')
-}
-
-function noteASharp() {
-    document.getElementById('noteASharp').play();
-    document.getElementById('pianoNoteASharp').classList.add('currentlyPlaying')
-}
-
-function noteB() {
-    document.getElementById('noteB').play();
-    document.getElementById('pianoNoteB').classList.add('currentlyPlaying')
-}
-
-function noteC1() {
-    document.getElementById('noteC1').play();
-    document.getElementById('pianoNoteC1').classList.add('currentlyPlaying')
-}
-
 function generateProgression() {
     var x = 0;
     var y = 0;
@@ -1010,115 +879,21 @@ function debugMenu() {
     }
 }
 
-/* event listeners for the piano keys, for click functions */
+function playNote(note, audible = true) {
+    audio_ele = document.getElementById(`${note}-audio`);
+    key_ele = document.getElementById(`${note}-key`);
 
-// html_id_array = []
-// for (i = 0; i < html_id_array.length; i++) {
-//     document.
-// }
+    if (audible) audio_ele.play();
 
-const removeAnimation = (event) => {
-    const ANIMATION_FADEOUT_DURATION = 2050;
+    key_ele.classList.add('currentlyPlaying');
     setTimeout(function() {
-        event.target.classList.remove('currentlyPlaying');
+        key_ele.classList.remove('currentlyPlaying');
     }, ANIMATION_FADEOUT_DURATION)
 }
 
-document.getElementById("pianoBassC").addEventListener("click", function (e) {
-    bassC();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassCSharp").addEventListener("click", function (e) {
-    bassCSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassD").addEventListener("click", function (e) {
-    bassD();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassDSharp").addEventListener("click", function (e) {
-    bassDSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassE").addEventListener("click", function (e) {
-    bassE();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassF").addEventListener("click", function (e) {
-    bassF();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassFSharp").addEventListener("click", function (e) {
-    bassFSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassG").addEventListener("click", function (e) {
-    bassG();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassGSharp").addEventListener("click", function (e) {
-    bassGSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassA").addEventListener("click", function (e) {
-    bassA();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassASharp").addEventListener("click", function (e) {
-    bassASharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoBassB").addEventListener("click", function (e) {
-    bassB();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteC").addEventListener("click", function (e) {
-    noteC();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteCSharp").addEventListener("click", function (e) {
-    noteCSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteD").addEventListener("click", function (e) {
-    noteD();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteDSharp").addEventListener("click", function (e) {
-    noteDSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteE").addEventListener("click", function (e) {
-    noteE();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteF").addEventListener("click", function (e) {
-    noteF();
-    setTimeout(function(){
-        e.target.classList.remove('currentlyPlaying');
-    }, 2050);
-});
-document.getElementById("pianoNoteFSharp").addEventListener("click", function (e) {
-    noteFSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteG").addEventListener("click", function (e) {
-    noteG();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteGSharp").addEventListener("click", function (e) {
-    noteGSharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteA").addEventListener("click", function (e) {
-    noteA();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteASharp").addEventListener("click", function (e) {
-    noteASharp();
-    removeAnimation(e);
-});
-document.getElementById("pianoNoteB").addEventListener("click",  function (e) {
-    noteB();
-    removeAnimation(e);
-});
+const AVAILABLE_NOTES = ['C3']
+for (const note of AVAILABLE_NOTES) {
+    document.getElementById(`${note}-key`).addEventListener('click', function() {
+        playNote(note, true);
+    })
+}

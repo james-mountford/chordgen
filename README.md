@@ -1,35 +1,64 @@
 # ChordGen
 
-ChordGen is a small browser-based project originally built in June 2022 as a personal programming exercise. It started as a way to continue practicing vanilla JavaScript, audio handling, DOM state transitions, and basic UI behavior. The result is a progression generator that selects a key, builds a Roman-numeral progression, displays it, and plays each chord using individual recorded notes.
+ChordGen is a browser-based chord progression generator backed by a native C++ audio-mixing engine. The project combines modern JavaScript modules, a Python/Flask API layer, and a compiled C++ mixer to generate, render, and play musical progressions with synchronized audio and UI animations.
 
-The interface includes a two-octave clickable piano, on-screen animations tied to user interaction, and a simple debug panel for inspecting the program’s internal state.
+Originally built in 2022 as a simple JavaScript exercise, the project has since evolved into a multi-layer system that performs key selection, Roman-numeral progression generation, note mapping, audio assembly, and waveform rendering.
 
-## Current Capabilities
-- Key and Progression Generation
-- Random key selection across 15 major and minor tonalities
-- Pop-style preset progressions (I–V–vi–IV, vi–IV–I–V, etc.)
-- Additional randomized progressions for major and minor modes
-- Automatic chord assignment and note mapping based on the selected key
+## Features
+- Key & Progression Generation
+- Random major and minor key selection across 15 defined keys
+- Pop-style preset progressions (e.g., I–V–vi–IV, vi–IV–I–V)
+- Additional randomized major and minor progression templates
+- Automatic translation from Roman numerals to scale-degree note sets
+- Expansion of each chord into bass + upper voices
 
-## Audio System
-- Every note (bass and upper voices) is an individual audio file
-- Chords are “assembled” by triggering the correct notes simultaneously
-- Basic timing loop to play progressions sequentially
-- Clickable piano keys trigger their associated samples
+## Front-End System
+- Fully modular ES-module JavaScript structure
+- Two-octave clickable piano interface
+- Animated UI elements (clefs, chord slots, note playback)
+- Real-time DOM updates with fade-in/fade-out transitions
+- Debug utilities for examining generated keys, progressions, and note mappings
 
-## UI and Interaction
-- Lightweight HTML/CSS layout with a full piano mockup
-- Simple animations for clefs, chord transitions, and button hover states
-- Debug menu for stepping through internal functions
-- Visual note highlighting for all played notes
+## Audio Playback
+- All notes (bass and treble registers) are individual WAV files
+- Browser playback for immediate chord preview
+- Visual highlighting of active piano keys during playback
 
-## Planned Next Step: C++ Audio Mixer
+## Native C++ Mixer
 
-The next iteration plans to replace the browser’s scattered audio-playback model with a small C++ mixer. The mixer will:
+ChordGen includes a standalone audio mixer implemented in C++, providing deterministic and synchronized chord rendering:
 
-- Load raw audio files (from mic-recorded samples)
-- Mix multiple notes into a single chord buffer server-side
-- Return clean, synchronized audio for each chord
-- Allow more controlled timing, polyphony, and future dynamic synthesis
+### Capabilities
+- Loads raw WAV samples from disk
+- Mixes multiple note buffers into a single chord buffer
+- Outputs unified WAV files to a server-side directory
+- Supports polyphonic layers across multiple octaves
+- Exposed to Python through a Pybind11 interface
 
-This moves chord generation from “play several .mp3 tags at once” to an actual blending engine, giving the project far more control and eliminating the browser’s limitations.
+### Integration
+- The compiled extension (mixer.pyd) is callable from Python
+- A typing stub (mixer.pyi) provides editor hints
+- Flask uses the mixer to generate chord audio on request
+- Rendered files are served to the browser for playback
+
+## Server Layer
+A lightweight Flask server coordinates communication between the browser and the C++ mixer:
+- Receives chord-note sequences via JSON
+- Calls the C++ mixer to generate the final chord progression file
+- Stores output WAV files under src/generated/wav/
+- Serves UI, static assets, and sound files
+- Exposes an API endpoint for requesting new progressions
+
+## Technologies Used
+- C++17 — Native mixer, PCM parsing, WAV writing
+- Pybind11 — Python bindings for native code
+- Python 3 / Flask — API layer, audio file generation endpoint
+- JavaScript (ES Modules) — Key generation, UI rendering, event handling
+- HTML/CSS — Layout, animations, interactive piano interface
+
+## Future Enhancements
+- Additional chord voicing models and inversion support
+- Expanded sample library
+- Real-time WebSocket streaming of mixed audio
+- Optional React or Canvas-based UI
+- On-the-fly synthesis options instead of sample playback

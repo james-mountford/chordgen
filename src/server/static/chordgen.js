@@ -1,127 +1,20 @@
 const ANIMATION_FADEOUT_DURATION = 2050;
-
-/* this is the random number function. */
-function keyGen() {
-    keyNumber = Math.floor(Math.random() * 15);
-    //console.log(keyNumber);
-    // document.getElementById("RNG").innerHTML = "Your selected number is: " + keyNumber;
-}
-
-/* these are blank data structures */
-let playCounter = 0;
-let counter = 0;
-let chordProgression = "0";
-let chordProgressionArray = "0";
-let chord0 = "0";
-let chord1 = "0";
-let chord2 = "0";
-let chord3 = "0";
-let chord4 = "0";
-let chord5 = "0";
-let chord6 = "0";
-let chord7 = "0";
-let chord8 = "0";
-
-let chord0Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord1Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord2Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord3Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord4Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord5Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord6Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord7Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let chord8Notes = {
-    bassNote: "0",
-    note1: "0",
-    note2: "0",
-    note3: "0",
-};
-
-let progressionNumber = 0;
-
-let keyNumber = 0;
-
-let keyScale = {
-    number: 0,
-    tonic: "Cb",
-    supertonic: "Db",
-    mediant: "Eb",
-    subdominant: "Fb",
-    dominant: "Gb",
-    submediant: "Ab",
-    leadingtone: "Bb",
-};
-
-/* this is the code that defines the chord structures for a pop song */
-
-const majorPop = {
-    chord1: "I",
-    chord2: "V",
-    chord3: "vi",
-    chord4: "IV",
-    chord5: "I",
-};
-
-const minorPop = {
-    chord1: "vi",
-    chord2: "IV",
-    chord3: "I",
-    chord4: "V",
-    chord5: "vi",
-};
-
-/* this is the code that defines the key data structures as javascript objects */
+const MAX_PROGRESSION_LENGTH = 6;
+const NUM_KEYS = 15;
+const MINOR_PROGRESSIONS = [
+    ['i', 'III', 'VI', 'iv', 'V', 'i'], 
+    ['i', 'VI', 'iv', 'V', 'i'], 
+    ['i', 'VI', 'iv', 'V', 'i']
+]
+const MAJOR_PROGRESSIONS = [
+    ['I', 'vi', 'IV', 'V', 'I'],
+    ['I', 'vi', 'ii', 'V', 'I'],
+    ['I', 'iii', 'vi', 'IV', 'V', 'I']
+]
+const MAJOR_POP_PROGRESSION = ['I', 'V', 'vi', 'IV', 'I']
+const MINOR_POP_PROGRESSION = ['vi', 'IV', 'I', 'V', 'vi']
 
 const keyCb = {
-    number: 0,
     tonic: "Cb",
     supertonic: "Db",
     mediant: "Eb",
@@ -132,7 +25,6 @@ const keyCb = {
 };
 
 const keyGb = {
-    number: 1,
     tonic: "Gb",
     supertonic: "Ab",
     mediant: "Bb",
@@ -143,7 +35,6 @@ const keyGb = {
 };
 
 const keyDb = {
-    number: 2,
     tonic: "Db",
     supertonic: "Eb",
     mediant: "F",
@@ -154,7 +45,6 @@ const keyDb = {
 };
 
 const keyAb = {
-    number: 3,
     tonic: "Ab",
     supertonic: "Bb",
     mediant: "C",
@@ -165,7 +55,6 @@ const keyAb = {
 };
 
 const keyEb = {
-    number: 4,
     tonic: "Eb",
     supertonic: "F",
     mediant: "G",
@@ -176,7 +65,6 @@ const keyEb = {
 };
 
 const keyBb = {
-    number: 5,
     tonic: "Bb",
     supertonic: "C",
     mediant: "D",
@@ -187,7 +75,6 @@ const keyBb = {
 };
 
 const keyF = {
-    number: 6,
     tonic: "F",
     supertonic: "G",
     mediant: "A",
@@ -198,7 +85,6 @@ const keyF = {
 };
 
 const keyC = {
-    number: 7,
     tonic: "C",
     supertonic: "D",
     mediant: "E",
@@ -209,7 +95,6 @@ const keyC = {
 };
 
 const keyG = {
-    number: 8,
     tonic: "G",
     supertonic: "A",
     mediant: "B",
@@ -220,7 +105,6 @@ const keyG = {
 };
 
 const keyD = {
-    number: 9,
     tonic: "D",
     supertonic: "E",
     mediant: "F#",
@@ -231,7 +115,6 @@ const keyD = {
 };
 
 const keyA = {
-    number: 10,
     tonic: "A",
     supertonic: "B",
     mediant: "C#",
@@ -242,7 +125,6 @@ const keyA = {
 };
 
 const keyE = {
-    number: 11,
     tonic: "E",
     supertonic: "F#",
     mediant: "G#",
@@ -253,7 +135,6 @@ const keyE = {
 };
 
 const keyB = {
-    number: 12,
     tonic: "B",
     supertonic: "C#",
     mediant: "D#",
@@ -265,7 +146,6 @@ const keyB = {
 
 
 const keyFSharp = {
-    number: 13,
     tonic: "F#",
     supertonic: "G#",
     mediant: "A#",
@@ -276,7 +156,6 @@ const keyFSharp = {
 };
 
 const keyCSharp = {
-    number: 14,
     tonic: "C#",
     supertonic: "D#",
     mediant: "E#",
@@ -286,175 +165,82 @@ const keyCSharp = {
     leadingtone: "B#",
 };
 
-function keySelect() {
-    switch (keyNumber) {
-        case 0:
-            keyScale = keyCb;
-            break;
-        case 1:
-            keyScale = keyGb;
-            break;
-        case 2:
-            keyScale = keyDb;
-            break;
-        case 3:
-            keyScale = keyAb;
-            break;
-        case 4:
-            keyScale = keyEb;
-            break;
-        case 5:
-            keyScale = keyBb;
-            break;
-        case 6:
-            keyScale = keyF;
-            break;
-        case 7:
-            keyScale = keyC;
-            break;
-        case 8:
-            keyScale = keyG;
-            break;
-        case 9:
-            keyScale = keyD;
-            break;
-        case 10:
-            keyScale = keyA;
-            break;
-        case 11:
-            keyScale = keyE;
-            break;
-        case 12:
-            keyScale = keyB;
-            break;
-        case 12:
-            keyScale = keyFSharp;
-            break;
-        default:
-            keyScale = keyCSharp;
-            break;
-    }
-    //console.log(keyScale);
-    document.getElementById("key").innerHTML = keyScale.tonic;
+function generateRandomKey() {
+    const KEY_ARRAY = [keyCb, keyGb, keyDb, keyAb, keyEb, keyBb, keyF, keyC, keyG, keyD, keyA, keyE, keyB, keyFSharp, keyCSharp];
+    const keyScale = KEY_ARRAY[Math.floor(Math.random() * (NUM_KEYS))]
+
+    return keyScale;
 }
 
-// function keyGen() {
-//     keyNumber = Math.floor(Math.random() * 15);
-//     //console.log(keyNumber);
-//     document.getElementById("RNG").innerHTML = "Your selected number is: " + keyNumber;
-// }
+let progDisplayElement = document.getElementById("progression");
 
-let progression = document.getElementById("progression");
-
-function progGen() {
-    if (document.getElementById("popSlider").checked === true && document.getElementById("minSlider").checked === false) {
-        document.getElementById("progression").innerHTML = majorPop.chord1 + " " + majorPop.chord2 + " " + majorPop.chord3 + " " + majorPop.chord4 + " " + majorPop.chord5;
-    } else if (document.getElementById("popSlider").checked === true && document.getElementById("minSlider").checked === true) {
-        document.getElementById("progression").innerHTML = minorPop.chord1 + " " + minorPop.chord2 + " " + minorPop.chord3 + " " + minorPop.chord4 + " " + minorPop.chord5;
-    } else if (document.getElementById("minSlider").checked === true) {
-        progressionNumber = Math.floor(Math.random() * 3);
-        if (progressionNumber === 0) {
-            progression.innerHTML = "i III VI iv V i";
-        } else if (progressionNumber === 1) {
-            progression.innerHTML = "i VI iv V i";
-        } else if (progressionNumber === 2) {
-            progression.innerHTML = "i VI iv V i";
+function renderHTMLChordString(progression) {
+    console.log(progression)
+    htmlString = ''
+    for (i = 0; i < progression.length; i++) {
+        if (i != progression.length - 1) {
+            htmlString += (progression[i] + ' ');
+        } else {
+            htmlString += (progression[i]);
         }
+    }
+    console.log(htmlString);
+    return htmlString;
+}
+
+function generateRomanNumeralProgression(progDisplayElement) {
+    popSliderElement = document.getElementById('pop-slider');
+    minorSliderElement = document.getElementById('minor-slider');
+
+    if (popSliderElement.checked && !minorSliderElement.checked) {
+        selectedProgression = MAJOR_POP_PROGRESSION;
+    } else if (popSliderElement.checked && minorSliderElement.checked) {
+        selectedProgression = MINOR_POP_PROGRESSION;
+    } else if (minorSliderElement.checked) {
+        selectedProgression = MINOR_PROGRESSIONS[Math.floor(Math.random() * MINOR_PROGRESSIONS.length)]
     } else {
-        progressionNumber = Math.floor(Math.random() * 3);
-        if (progressionNumber === 0) {
-            progression.innerHTML = "I vi IV V I";
-        } else if (progressionNumber === 1) {
-            progression.innerHTML = "I vi ii V I";
-        } else if (progressionNumber === 2) {
-            progression.innerHTML = "I iii vi IV V I";
-        }
+        selectedProgression = MAJOR_PROGRESSIONS[Math.floor(Math.random() * MAJOR_PROGRESSIONS.length)]
     }
+    
+    progDisplayElement.innerHTML = renderHTMLChordString(selectedProgression);
+    return selectedProgression;
 }
 
-function getChords() {
-    let chordProgression = document.getElementById("progression").textContent;
-    //console.log(chordProgression);
-    chordProgressionArray = chordProgression.trim().split(/\s+/);
-    //console.log(chordProgressionArray);
-    //console.log(chordProgressionArray[0]);
-}
-
-function assignChords() {
-    //console.log(chordProgressionArray[0]);
-    if (chordProgressionArray[0]) {
-        chord0 = chordProgressionArray[0];
-        //console.log(chord0);
-    } if (chordProgressionArray[1]) {
-        chord1 = chordProgressionArray[1];
-        // console.log(chord1);
-    } if (chordProgressionArray[2]) {
-        chord2 = chordProgressionArray[2];
-        // console.log(chord2);
-    } if (chordProgressionArray[3]) {
-        chord3 = chordProgressionArray[3];
-        // console.log(chord3);
-    } if (chordProgressionArray[4]) {
-        chord4 = chordProgressionArray[4];
-        // console.log(chord4);
-    } if (chordProgressionArray[5]) {
-        chord5 = chordProgressionArray[5];
-        // console.log(chord5);
-    } if (chordProgressionArray[6]) {
-        chord6 = chordProgressionArray[6];
-        // console.log(chord6);
-    } if (chordProgressionArray[7]) {
-        chord7 = chordProgressionArray[7];
-        //  console.log(chord7);
-    } if (chordProgressionArray[8]) {
-        chord8 = chordProgressionArray[8];
-        // console.log(chord8);
-    }
-}
-
-//function below adds the music note effects for the clefs
-
-let clefCounter = 0;
-
-function clefOpacity() {
-    if (clefCounter === 0) {
-        document.getElementById('treble').classList.remove('clefFadeIn')
-        document.getElementById('treble').classList.add('clefFadeOut')
-        document.getElementById('bass').classList.remove('clefFadeOut')
-        document.getElementById('bass').classList.add('clefFadeIn')
-        clefCounter = 1
-    } else if (clefCounter === 1) {
-        document.getElementById('treble').classList.remove('clefFadeOut')
-        document.getElementById('treble').classList.add('clefFadeIn')
-        document.getElementById('bass').classList.remove('clefFadeIn')
-        document.getElementById('bass').classList.add('clefFadeOut')
-        clefCounter = 0
+function toggleClefOpacity(currentClef) {
+    const trebleElement = document.getElementById('treble');
+    const bassElement = document.getElementById('bass');
+    if (currentClef === 'treble') {
+        trebleElement.classList.remove('clefFadeIn')
+        trebleElement.classList.add('clefFadeOut')
+        bassElement.classList.remove('clefFadeOut')
+        bassElement.classList.add('clefFadeIn')
+        currentClef = 'bass';
+    } else if (currentClef === 'bass') {
+        trebleElement.classList.remove('clefFadeOut')
+        trebleElement.classList.add('clefFadeIn')
+        bassElement.classList.remove('clefFadeIn')
+        bassElement.classList.add('clefFadeOut')
+        clefCounter === 'treble';
     }
 }
 
 //this function adds some cool animation when you press the play button
 document.addEventListener('mousemove', function (e) {
+    const playButtonRect = document.getElementById('play').getBoundingClientRect();
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
 
-    var playButton = document.getElementById('play').getBoundingClientRect();
+    const hoveringOnGenerateBtn = (mouseX > playButtonRect.left 
+                                    && mouseX < playButtonRect.right 
+                                    && mouseY > playButtonRect.top
+                                    && mouseY < playButtonRect.bottom)
 
-    function checkViewport (e) {
-        if (e.clientX > playButton.left && e.clientX < playButton.right && e.clientY > playButton.top && e.clientY < playButton.bottom) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    var isInViewport = checkViewport(e);
-
-    if (isInViewport) {
-        //console.log('hovering!')
+    if (hoveringOnGenerateBtn) {
         document.getElementById('flat').classList.add('flatAnimation')
         document.getElementById('sharp').classList.add('sharpAnimation')
         document.getElementById('sixteenth').classList.add('sixteenthAnimation')
         document.getElementById('sixteenthRest').classList.add('sixthRestAnimation')
     } else {
-        //console.log('gone...')
         document.getElementById('flat').classList.remove('flatAnimation')
         document.getElementById('sharp').classList.remove('sharpAnimation')
         document.getElementById('sixteenth').classList.remove('sixteenthAnimation')
@@ -462,307 +248,89 @@ document.addEventListener('mousemove', function (e) {
     }
 })
 
+function renderGenerationInformation(selectedKey, selectedProgression) {
+    // --- Update key display ---
+    const keyEl = document.getElementById("selectedKey");
+    const selectedKeyEl = document.getElementById("selectedKey");
 
-async function writeChords() {
-    let x = 0 //this just checks what state the program should run in, dictated by what chord progression we are on
-    let chordProgressionLength = chordProgressionArray.length;
-    if (chordProgressionLength === 4) {
-        document.getElementById('chordFive').style.opacity = "0%"
-        document.getElementById('chordFive').classList.remove('fadeInAnimation')
-        document.getElementById('chordSix').style.opacity = "0%"
-        document.getElementById('chordSix').classList.remove('fadeInAnimation')
-        document.getElementById('chordSeven').style.opacity = "0%"
-        document.getElementById('chordSeven').classList.remove('fadeInAnimation')
-        x = 4
-    } else if (chordProgressionLength === 5) {
-        document.getElementById('chordSix').style.opacity = "0%"
-        document.getElementById('chordSix').classList.remove('fadeInAnimation')
-        document.getElementById('chordSeven').style.opacity = "0%"
-        document.getElementById('chordSeven').classList.remove('fadeInAnimation')
-        x = 5
-    } else if (chordProgressionLength === 6) {
-        x = 6
-    }
+    keyEl.textContent = selectedKey.tonic;
 
-    if (counter === 0) {
+    // restart animation cleanly
+    selectedKeyEl.classList.remove("fadeInAnimation");
+    void selectedKeyEl.offsetWidth; // reflow trick
+    selectedKeyEl.classList.add("fadeInAnimation");
 
-        document.getElementById('selectedKey').innerHTML = keyScale.tonic;
-        document.getElementById('selectedKey').classList.add('fadeInAnimation')
+    // --- Handle chords ---
+    for (let i = 1; i <= MAX_PROGRESSION_LENGTH; i++) {
+        const chordEl = document.getElementById(`chord${i}`);
 
-        if (chord0 != 0) {
-            document.getElementById('chordOne').innerHTML = chord0;
-            document.getElementById('chordOne').classList.add('fadeInAnimation')
-        }
-        if (chord1 != 0) {
-            document.getElementById('chordTwo').innerHTML = chord1;
-            document.getElementById('chordTwo').classList.add('fadeInAnimation')
-        }
-        if (chord2 != 0) {
-            document.getElementById('chordThree').innerHTML = chord2;
-            document.getElementById('chordThree').classList.add('fadeInAnimation')
-        }
-        if (chord3 != 0) {
-            document.getElementById('chordFour').innerHTML = chord3;
-            document.getElementById('chordFour').classList.add('fadeInAnimation')
-        }
-        if (chord4 != 0) {
-            document.getElementById('chordFive').innerHTML = chord4;
-            document.getElementById('chordFive').classList.add('fadeInAnimation')
-        }
-        if (chord5 != 0) {
-            document.getElementById('chordSix').innerHTML = chord5;
-            document.getElementById('chordSix').classList.add('fadeInAnimation')
-        }
-        if (chord6 != 0) {
-            document.getElementById('chordSeven').innerHTML = chord6;
-            document.getElementById('chordSeven').classList.add('fadeInAnimation')
-        }
-        if (chord7 != 0) {
-            document.getElementById('chordEight').innerHTML = chord7;
-            document.getElementById('chordEight').classList.add('fadeInAnimation')
-        }
-        counter = counter + 1;
-    } else if (counter === 1) {
-        document.getElementById('selectedKey').innerHTML = keyScale.tonic;
-        document.getElementById('selectedKey').classList.remove('fadeInAnimation')
-        document.getElementById('selectedKey').classList.add('fadeOutAnimation')
-        setTimeout(function(){
-            document.getElementById('selectedKey').classList.remove('fadeOutAnimation')
-            document.getElementById('selectedKey').classList.add('fadeInAnimation')
-        }, 200)
-        if (chord0 != 0) {
-            document.getElementById('chordOne').classList.remove('fadeInAnimation')
-            document.getElementById('chordOne').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordOne').innerHTML = chord0
-                document.getElementById('chordOne').classList.remove('fadeOutAnimation')
-                document.getElementById('chordOne').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord1 != 0) {
-            document.getElementById('chordTwo').classList.remove('fadeInAnimation')
-            document.getElementById('chordTwo').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordTwo').innerHTML = chord1
-                document.getElementById('chordTwo').classList.remove('fadeOutAnimation')
-                document.getElementById('chordTwo').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord2 != 0) {
-            document.getElementById('chordThree').classList.remove('fadeInAnimation')
-            document.getElementById('chordThree').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordThree').innerHTML = chord2
-                document.getElementById('chordThree').classList.remove('fadeOutAnimation')
-                document.getElementById('chordThree').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord3 != 0) {
-            document.getElementById('chordFour').classList.remove('fadeInAnimation')
-            document.getElementById('chordFour').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordFour').innerHTML = chord3
-                document.getElementById('chordFour').classList.remove('fadeOutAnimation')
-                document.getElementById('chordFour').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord4 != 0 && x >= 5) {
-            document.getElementById('chordFive').classList.remove('fadeInAnimation')
-            document.getElementById('chordFive').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordFive').innerHTML = chord4
-                document.getElementById('chordFive').classList.remove('fadeOutAnimation')
-                document.getElementById('chordFive').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord5 != 0 && x === 6) {
-            document.getElementById('chordSix').classList.remove('fadeInAnimation')
-            document.getElementById('chordSix').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordSix').innerHTML = chord5
-                document.getElementById('chordSix').classList.remove('fadeOutAnimation')
-                document.getElementById('chordSix').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord6 != 0) {
-            document.getElementById('chordSeven').classList.remove('fadeInAnimation')
-            document.getElementById('chordSeven').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordSeven').innerHTML = chord6
-                document.getElementById('chordSeven').classList.remove('fadeOutAnimation')
-                document.getElementById('chordSeven').classList.add('fadeInAnimation')
-            }, 200)
-        }
-        if (chord7 != 0) {
-            document.getElementById('chordEight').classList.remove('fadeInAnimation')
-            document.getElementById('chordEight').classList.add('fadeOutAnimation')
-            setTimeout(function(){
-                document.getElementById('chordEight').innerHTML = chord7
-                document.getElementById('chordEight').classList.remove('fadeOutAnimation')
-                document.getElementById('chordEight').classList.add('fadeInAnimation')
-            }, 200)
+        if (i <= selectedProgression.length) {
+            // Populate chord
+            chordEl.textContent = selectedProgression[i - 1];
+
+            // Ensure visible
+            chordEl.style.opacity = "1";
+
+            // Restart animation
+            chordEl.classList.remove("fadeInAnimation", "fadeOutAnimation");
+            void chordEl.offsetWidth; // reflow trick
+            chordEl.classList.add("fadeInAnimation");
+
+        } else {
+            // Fade out unused slots
+            chordEl.classList.remove("fadeInAnimation");
+            void chordEl.offsetWidth;
+            chordEl.classList.add("fadeOutAnimation");
         }
     }
-};
-
-//functions that are called to assign notes to the chords. these are not camelCase;
-//because they need to be case-specific for chords.
-
-
-function assignNotes() {
-    if ((chord0) && chord0 === "I") {
-        chord0Notes.bassNote = keyScale.tonic;
-        chord0Notes.note1 = keyScale.tonic;
-        chord0Notes.note2 = keyScale.mediant;
-        chord0Notes.note3 = keyScale.dominant;
-    } else if ((chord0) && chord0 === "vi") {
-        chord0Notes.bassNote = keyScale.submediant;
-        chord0Notes.note1 = keyScale.submediant;
-        chord0Notes.note2 = keyScale.tonic;
-        chord0Notes.note3 = keyScale.mediant;
-    }
-
-    if ((chord1) && chord1 === "vi") {
-        chord1Notes.bassNote = keyScale.submediant;
-        chord1Notes.note1 = keyScale.submediant;
-        chord1Notes.note2 = keyScale.tonic;
-        chord1Notes.note3 = keyScale.mediant;
-    } else if ((chord1) && chord1 === "iii") {
-        chord1Notes.bassNote = keyScale.mediant;
-        chord1Notes.note1 = keyScale.mediant;
-        chord1Notes.note2 = keyScale.dominant;
-        chord1Notes.note3 = keyScale.leadingtone;
-    } else if ((chord1) && chord1 === "V") {
-        chord1Notes.bassNote = keyScale.dominant;
-        chord1Notes.note1 = keyScale.dominant;
-        chord1Notes.note2 = keyScale.leadingtone;
-        chord1Notes.note3 = keyScale.supertonic;
-    }
-
-    if ((chord2) && chord2 === "vi") {
-        chord2Notes.bassNote = keyScale.submediant;
-        chord2Notes.note1 = keyScale.submediant;
-        chord2Notes.note2 = keyScale.tonic;
-        chord2Notes.note3 = keyScale.mediant;
-    } else if ((chord2) && chord2 === "ii") {
-        chord2Notes.bassNote = keyScale.supertonic;
-        chord2Notes.note1 = keyScale.supertonic;
-        chord2Notes.note2 = keyScale.subdominant;
-        chord2Notes.note3 = keyScale.submediant;
-    } else if ((chord2) && chord2 === "IV") {
-        chord2Notes.bassNote = keyScale.subdominant;
-        chord2Notes.note1 = keyScale.subdominant;
-        chord2Notes.note2 = keyScale.submediant;
-        chord2Notes.note3 = keyScale.tonic;
-    }
-
-    if ((chord3) && chord3 === "V") {
-        chord3Notes.bassNote = keyScale.dominant;
-        chord3Notes.note1 = keyScale.dominant;
-        chord3Notes.note2 = keyScale.leadingtone;
-        chord3Notes.note3 = keyScale.supertonic;
-    } else if ((chord3) && chord3 === "IV") {
-        chord3Notes.bassNote = keyScale.subdominant;
-        chord3Notes.note1 = keyScale.subdominant;
-        chord3Notes.note2 = keyScale.submediant;
-        chord3Notes.note3 = keyScale.tonic;
-    }
-
-    if ((chord4) && chord4 === "I") {
-        chord4Notes.bassNote = keyScale.tonic;
-        chord4Notes.note1 = keyScale.tonic;
-        chord4Notes.note2 = keyScale.mediant;
-        chord4Notes.note3 = keyScale.dominant;
-    } else if ((chord4) && chord4 === "V") {
-        chord4Notes.bassNote = keyScale.dominant;
-        chord4Notes.note1 = keyScale.dominant;
-        chord4Notes.note2 = keyScale.leadingtone;
-        chord4Notes.note3 = keyScale.supertonic;
-    }
-
-    if ((chord5) && chord5 === "I") {
-        chord5Notes.bassNote = keyScale.tonic;
-        chord5Notes.note1 = keyScale.tonic;
-        chord5Notes.note2 = keyScale.mediant;
-        chord5Notes.note3 = keyScale.dominant;
-    } else if ((chord5) && chord5 === "V") {
-        chord5Notes.bassNote = keyScale.dominant;
-        chord5Notes.note1 = keyScale.dominant;
-        chord5Notes.note2 = keyScale.leadingtone;
-        chord5Notes.note3 = keyScale.supertonic;
-    }
-    // console.log(chord0);
-    // console.log(chord0Notes);
-    // console.log(chord1);
-    // console.log(chord1Notes);
-    // console.log(chord2);
-    // console.log(chord2Notes);
-    // console.log(chord3);
-    // console.log(chord3Notes);
-    // console.log(chord4);
-    // console.log(chord4Notes);
 }
 
-function generateProgression() {
-    var x = 0;
-    var y = 0;
-    progression = []
-    while (x < chordProgressionArray.length) {
-        switch (x) {
-            case 0:
-                y = chord0Notes;
+
+function assignChordNotes(selectedKey, selectedProgression) {
+    expandedProgressionWithNotes = []
+    for (i = 0; i < selectedProgression.length; i++) {
+        let chordNotes = []
+        switch(selectedProgression[i]) {
+            case 'I':
+                chordNotes = [selectedKey.tonic, selectedKey.tonic, selectedKey.mediant, selectedKey.dominant];
                 break;
-            case 1:
-                y = chord1Notes;
+            case 'ii':
+                chordNotes = [selectedKey.supertonic, selectedKey.supertonic, selectedKey.subdominant, selectedKey.submediant];
                 break;
-            case 2:
-                y = chord2Notes;
+            case 'iii':
+                chordNotes = [selectedKey.mediant, selectedKey.mediant, selectedKey.dominant, selectedKey.leadingtone];
                 break;
-            case 3:
-                y = chord3Notes;
+            case 'IV':
+                chordNotes = [selectedKey.subdominant, selectedKey.subdominant, selectedKey.submediant, selectedKey.tonic];
                 break;
-            case 4:
-                y = chord4Notes;
+            case 'V':
+                chordNotes = [selectedKey.dominant, selectedKey.dominant, selectedKey.leadingtone, selectedKey.supertonic];
                 break;
-            case 5:
-                y = chord5Notes;
-                break;
-            case 6:
-                y = chord6Notes;
-                break;
-            case 7:
-                y = chord7Notes;
-                break;
-            case 8:
-                y = chord8Notes;
+            case 'vi':
+                chordNotes = [selectedKey.submediant, selectedKey.submediant, selectedKey.tonic, selectedKey.mediant];
                 break;
         }
-
-        //console.log(y);
-
-        let note_0 = determineNoteToPlay(y.bassNote, 'bass');
-        let note_1 = determineNoteToPlay(y.note1);
-        let note_2 = determineNoteToPlay(y.note2);
-        let note_3 = determineNoteToPlay(y.note3)
-        progression.push([note_0, note_1, note_2, note_3])
-
-        //reset all colors
-        // var currentlyPlayingArray = document.querySelectorAll('.currentlyPlaying');
-
-        // for (i = 0; i < (currentlyPlayingArray.length); i++) {
-        //     currentlyPlayingArray[i].classList.remove('currentlyPlaying');
-        // }
-        //console.log(currentlyPlayingArray.length);
-        //console.log(x); 
-        x++;
-
+        expandedProgressionWithNotes.push(chordNotes);
     }
-    playCounter = 0;
 
-    return progression;
+    return expandedProgressionWithNotes;
 }
 
-function determineNoteToPlay(note, type = 'treble') {
+function assignOctaves(progressionWithNotes) {
+    for (i = 0; i < progressionWithNotes.length; i++) {
+        for (j = 0; j < progressionWithNotes[i].length; j++) {
+            if (j === 0) {
+                progressionWithNotes[i][j] = translateNoteToSharpEquivalent(progressionWithNotes[i][j], 'bass');
+            } else {
+                progressionWithNotes[i][j] = translateNoteToSharpEquivalent(progressionWithNotes[i][j], 'treble');
+            }
+        }
+    }
+
+    return progressionWithNotes;
+}
+
+function translateNoteToSharpEquivalent(note, type = 'treble') {
     const octave_suffix = (type === 'bass') ? 3 : 4;
     switch(note) {
         case "C":
@@ -816,19 +384,26 @@ function determineNoteToPlay(note, type = 'treble') {
 }
 
 async function play() {
-    if (playCounter === 0) {
-        playCounter = 1;
-        clefOpacity();
-        keyGen();
-        keySelect();
-        progGen();
-        getChords();
-        assignChords();
-        assignNotes();
-        writeChords();
-        const cpp_progression = generateProgression();
-        console.log(cpp_progression);
-        response_data = await callGenerationAPI(cpp_progression);
+    let currentClef = 'treble';
+    currentlyPlaying = false;
+    if (!currentlyPlaying) {
+        toggleClefOpacity(currentClef);
+        currentlyPlaying = true;
+
+        let generatedKey = generateRandomKey();
+        console.log(generatedKey);
+
+        let progDisplayElement = document.getElementById('progression');
+        generatedProgression = generateRomanNumeralProgression(progDisplayElement);
+        console.log(generatedProgression);
+
+        let chordsWithNotes = assignChordNotes(generatedKey, generatedProgression);
+        chordsWithNotes = assignOctaves(chordsWithNotes);
+        console.log(chordsWithNotes);
+
+        renderGenerationInformation(generatedKey, generatedProgression);
+
+        response_data = await callGenerationAPI(chordsWithNotes);
         console.log(response_data)
         file_url = `http://127.0.0.1:5000${response_data.FILE_URL}`
         console.log(file_url);
@@ -837,8 +412,8 @@ async function play() {
         document.getElementById('generated-progression').load();
         document.getElementById('generated-progression').play();
         
-    } else if (playCounter > 0) {
-        //console.log("Error! You must wait until the current chord progression finishes.")
+    } else {
+        console.log("You must wait until the current chord progression finishes.")
     }
 }
 
@@ -865,20 +440,6 @@ async function callGenerationAPI(progression) {
 
 }
 
-let deBug = 0;
-
-function debugMenu() {
-    if (deBug === 0) {
-        document.getElementById('debugMenu').style.display = "block";
-        document.getElementById('debugText').style.display = "block";
-        deBug = 1;
-    } else if (deBug === 1) {
-        document.getElementById('debugMenu').style.display = "none";
-        document.getElementById('debugText').style.display = "none";
-        deBug = 1;
-    }
-}
-
 function playNote(note, audible = true) {
     audio_ele = document.getElementById(`${note}-audio`);
     key_ele = document.getElementById(`${note}-key`);
@@ -891,7 +452,7 @@ function playNote(note, audible = true) {
     }, ANIMATION_FADEOUT_DURATION)
 }
 
-const AVAILABLE_NOTES = ['C3']
+const AVAILABLE_NOTES = ['C3', 'C#3', 'D3', 'D#3', 'E3', 'F3', 'F#3', 'G3', 'G#3', 'A3', 'A#3', 'B3', 'C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4']
 for (const note of AVAILABLE_NOTES) {
     document.getElementById(`${note}-key`).addEventListener('click', function() {
         playNote(note, true);

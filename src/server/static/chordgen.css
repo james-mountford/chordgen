@@ -151,7 +151,7 @@ input:checked+.slider:before {
     padding-right: -10px;
 }
 
-.pianoWhiteKey {
+.white-key {
     width: 50px;
     height: 400px;
     padding: 4px;
@@ -163,12 +163,12 @@ input:checked+.slider:before {
     transition: background-color 0.25s;
 }
 
-.pianoWhiteKey:hover {
+.white-key:hover {
     background-color: #0a56a3;
     cursor: pointer;
 }
 
-.blackKeys {
+.black-keys {
     position: absolute;
     display: block;
     min-width: 900px;
@@ -187,7 +187,7 @@ input:checked+.slider:before {
     transition: background-color 0.25s;
 }
 
-.pianoBlackKey {
+.black-key {
     width: 35px;
     height: 250px;
     color: black;
@@ -198,7 +198,7 @@ input:checked+.slider:before {
     border-bottom-right-radius: 5px;
 }
 
-.pianoBlackKey:hover {
+.black-key:hover {
     background-color: #0a56a3;
     cursor: pointer;
 }
@@ -327,18 +327,6 @@ img {
     display: none;
 }
 
-#debugMenu {
-    display: none;
-    line-height: 60px;
-    margin-top: 20px;
-}
-
-#debugText {
-    display: none;
-    line-height: 20px;
-    font-family: Oxygen;
-}
-
 h1 {
     text-align: center;
     font-family: Oxygen;
@@ -441,17 +429,17 @@ footer {
         position: relative;
     }
 
-    .pianoWhiteKey {
+    .white-key {
         width: 12px;
         height: 150px;
     }
 
-    .pianoBlackKey {
+    .black-key {
         width: 11px;
         height: 90px;
     }
 
-    .blackKeys {
+    .black-keys {
         position: absolute;
         display: block;
         min-width: 350px;

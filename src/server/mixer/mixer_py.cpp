@@ -9,8 +9,8 @@ namespace py = pybind11;
 std::string render_chord_progression(const std::vector<std::vector<std::string>>& chords, const std::string file_name) {
     std::string file_path;
     std::vector<WavFile> generated_chords;
-    std::string default_soundfiles_path = "..\\..\\soundfiles\\wav\\";
-    std::string out_dir = "..\\..\\generated\\wav\\";
+    std::string default_soundfiles_path = "..\\soundfiles\\wav\\";
+    std::string out_dir = "..\\generated\\wav\\";
 
     // For each chord passed in, generate the corresponding .wav
     for (size_t i = 0; i < chords.size(); i++) {
@@ -35,5 +35,9 @@ std::string render_chord_progression(const std::vector<std::vector<std::string>>
 
 PYBIND11_MODULE(mixer, m) {
     m.doc() = "Prototype mixer module";
-    m.def("render_chord_progression", &render_chord_progression);
+    m.def(
+        "render_chord_progression",
+        &render_chord_progression,
+        "Generate a WAV chord progression and return output file path."
+    );
 }

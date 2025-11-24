@@ -2,18 +2,14 @@
 function keyGen() {
     keyNumber = Math.floor(Math.random() * 15);
     //console.log(keyNumber);
-    document.getElementById("RNG").innerHTML = "Your selected number is: " + keyNumber;
+    // document.getElementById("RNG").innerHTML = "Your selected number is: " + keyNumber;
 }
 
 /* these are blank data structures */
 let playCounter = 0;
-
 let counter = 0;
-
 let chordProgression = "0";
-
 let chordProgressionArray = "0";
-
 let chord0 = "0";
 let chord1 = "0";
 let chord2 = "0";
@@ -838,9 +834,10 @@ function noteC1() {
     document.getElementById('pianoNoteC1').classList.add('currentlyPlaying')
 }
 
-async function playChords() {
+function generateProgression() {
     var x = 0;
     var y = 0;
+    progression = []
     while (x < chordProgressionArray.length) {
         switch (x) {
             case 0:
@@ -874,137 +871,82 @@ async function playChords() {
 
         //console.log(y);
 
-        if (y.bassNote === "C" || y.bassNote === "B#") {
-            bassC();
-        } else if (y.bassNote === "C#" || y.bassNote === "Db") {
-            bassCSharp();
-        } else if (y.bassNote === "D") {
-            bassD();
-        } else if (y.bassNote === "D#" || y.bassNote === "Eb") {
-            bassDSharp();
-        } else if (y.bassNote === "E" || y.bassNote === "Fb") {
-            bassE();
-        } else if (y.bassNote === "F" || y.bassNote === "E#") {
-            bassF();
-        } else if (y.bassNote === "F#" || y.bassNote === "Gb") {
-            bassFSharp();
-        } else if (y.bassNote === "G") {
-            bassG();
-        } else if (y.bassNote === "G#" || y.bassNote === "Ab") {
-            bassGSharp();
-        } else if (y.bassNote === "A") {
-            bassA();
-        } else if (y.bassNote === "A#" || y.bassNote === "Bb") {
-            bassASharp();
-        } else if (y.bassNote === "B" || y.bassNote === "Cb") {
-            bassB();
-        }
-
-        if (y.note1 === "C" || y.note1 === "B#") {
-            noteC();
-        } else if (y.note1 === "C#" || y.note1 === "Db") {
-            noteCSharp();
-        } else if (y.note1 === "D") {
-            noteD();
-        } else if (y.note1 === "D#" || y.note1 === "Eb") {
-            noteDSharp();
-        } else if (y.note1 === "E" || y.note1 === "Fb") {
-            noteE();
-        } else if (y.note1 === "F" || y.note1 === "E#") {
-            noteF();
-        } else if (y.note1 === "F#" || y.note1 === "Gb") {
-            noteFSharp();
-        } else if (y.note1 === "G") {
-            noteG();
-        } else if (y.note1 === "G#" || y.note1 === "Ab") {
-            noteGSharp();
-        } else if (y.note1 === "A") {
-            noteA();
-        } else if (y.note1 === "A#" || y.note1 === "Bb") {
-            noteASharp();
-        } else if (y.note1 === "B" || y.note1 === "Cb") {
-            noteB();
-        } else if (y.note1 === "C1" || y.note1 === "B#") {
-            noteC1();
-        }
-
-        if (y.note2 === "C" || y.note2 === "B#") {
-            noteC();
-        } else if (y.note2 === "C#" || y.note2 === "Db") {
-            noteCSharp();
-        } else if (y.note2 === "D") {
-            noteD();
-        } else if (y.note2 === "D#" || y.note2 === "Eb") {
-            noteDSharp();
-        } else if (y.note2 === "E" || y.note2 === "Fb") {
-            noteE();
-        } else if (y.note2 === "F" || y.note2 === "E#") {
-            noteF();
-        } else if (y.note2 === "F#" || y.note2 === "Gb") {
-            noteFSharp();
-        } else if (y.note2 === "G") {
-            noteG();
-        } else if (y.note2 === "G#" || y.note2 === "Ab") {
-            noteGSharp();
-        } else if (y.note2 === "A") {
-            noteA();
-        } else if (y.note2 === "A#" || y.note2 === "Bb") {
-            noteASharp();
-        } else if (y.note2 === "B" || y.note2 === "Cb") {
-            noteB();
-        } else if (y.note2 === "C1" || y.note2 === "B#") {
-            noteC1();
-        }
-
-        if (chord0Notes.note3 === "C" || y.note3 === "B#") {
-            noteC();
-        } else if (y.note3 === "C#" || y.note3 === "Db") {
-            noteCSharp();
-        } else if (y.note3 === "D") {
-            noteD();
-        } else if (y.note3 === "D#" || y.note3 === "Eb") {
-            noteDSharp();
-        } else if (y.note3 === "E" || y.note3 === "Fb") {
-            noteE();
-        } else if (y.note3 === "F" || y.note3 === "E#") {
-            noteF();
-        } else if (y.note3 === "F#" || y.note3 === "Gb") {
-            noteFSharp();
-        } else if (y.note3 === "G") {
-            noteG();
-        } else if (y.note3 === "G#" || y.note3 === "Ab") {
-            noteGSharp();
-        } else if (y.note3 === "A") {
-            noteA();
-        } else if (y.note3 === "A#" || y.note3 === "Bb") {
-            noteASharp();
-        } else if (y.note3 === "B" || y.note3 === "Cb") {
-            noteB();
-        } else if (y.note3 === "C1" || y.note3 === "B#") {
-            noteC1();
-        }
-
-        //time-out between chords
-        await new Promise(r => setTimeout(r, 2100));
+        let note_0 = determineNoteToPlay(y.bassNote, 'bass');
+        let note_1 = determineNoteToPlay(y.note1);
+        let note_2 = determineNoteToPlay(y.note2);
+        let note_3 = determineNoteToPlay(y.note3)
+        progression.push([note_0, note_1, note_2, note_3])
 
         //reset all colors
-        var currentlyPlayingArray = document.querySelectorAll('.currentlyPlaying');
+        // var currentlyPlayingArray = document.querySelectorAll('.currentlyPlaying');
 
-        for (i = 0; i < (currentlyPlayingArray.length); i++) {
-            currentlyPlayingArray[i].classList.remove('currentlyPlaying');
-        }
+        // for (i = 0; i < (currentlyPlayingArray.length); i++) {
+        //     currentlyPlayingArray[i].classList.remove('currentlyPlaying');
+        // }
         //console.log(currentlyPlayingArray.length);
-        //console.log(x);
+        //console.log(x); 
         x++;
-        //console.log(x);
 
     }
     playCounter = 0;
+
+    return progression;
 }
 
+function determineNoteToPlay(note, type = 'treble') {
+    const octave_suffix = (type === 'bass') ? 3 : 4;
+    switch(note) {
+        case "C":
+        case "B#":
+            note = "C";
+            break;
+        case "C#":
+        case "Db":
+            note = "C#";
+            break;
+        case "D":
+            note ="D";
+            break;
+        case "D#":
+        case "Eb":
+            note = "D#";
+            break;
+        case "E":
+        case "Fb":
+            note = "E";
+            break;
+        case "F":
+        case "E#":
+            note = "F";
+            break;
+        case "F#":
+        case "Gb":
+            note = "F#";
+            break;
+        case "G":
+            note = "G";
+            break;
+        case "G#":
+        case "Ab":
+            note = "G#";
+            break;
+        case "A":
+            note = "A";
+            break;
+        case "A#":
+        case "Bb":
+            note = "A#";
+            break;
+        case "B":
+        case "Cb":
+            note = "B"
+            break;
+    }
 
+    return note + octave_suffix
+}
 
-function play() {
+async function play() {
     if (playCounter === 0) {
         playCounter = 1;
         clefOpacity();
@@ -1015,10 +957,43 @@ function play() {
         assignChords();
         assignNotes();
         writeChords();
-        playChords();
+        const cpp_progression = generateProgression();
+        console.log(cpp_progression);
+        response_data = await callGenerationAPI(cpp_progression);
+        console.log(response_data)
+        file_url = `http://127.0.0.1:5000${response_data.FILE_URL}`
+        console.log(file_url);
+
+        document.getElementById('generated-progression-source').src = file_url;
+        document.getElementById('generated-progression').load();
+        document.getElementById('generated-progression').play();
+        
     } else if (playCounter > 0) {
         //console.log("Error! You must wait until the current chord progression finishes.")
     }
+}
+
+async function callGenerationAPI(progression) {
+    const siteAddress = 'http://127.0.0.1:5000';
+    const generationUrl = siteAddress + '/api/generate-progression';
+    try {
+        const response = await fetch(generationUrl, {
+            method : "POST",
+            body: JSON.stringify({
+                "PROGRESSION": progression
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        data = await response.json();
+        return data;
+        
+    } catch (error) {
+        console.log("Error generating chord progression: " + error)
+    }
+
 }
 
 let deBug = 0;

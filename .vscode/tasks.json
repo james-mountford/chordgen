@@ -14,7 +14,7 @@
         // core implementation
         "${workspaceFolder}/src/chordgen/src/mixer.cpp",
         "${workspaceFolder}/src/chordgen/src/wav.cpp",
-        "${workspaceFolder}/src/chordgen/src/mixer_py.cpp",
+        "${workspaceFolder}/src/chordgen/src/chodgen.cpp",
 
         // header include path
         "-I", "${workspaceFolder}/src/chordgen/include",

@@ -6,17 +6,21 @@
 
 namespace py = pybind11;
 
-std::string render_chord_progression(const std::vector<std::vector<std::string>>& chords, const std::string file_name) {
+std::string render_chord_progression(
+        const std::vector<std::vector<std::string>>& chords,
+        const std::string target_samplepack_path,
+        const std::string output_file_name,
+        const std::string output_file_path
+        ) {
+            
     std::string file_path;
     std::vector<WavFile> generated_chords;
-    std::string default_soundfiles_path = "..\\soundfiles\\wav\\";
-    std::string out_dir = "..\\generated\\wav\\";
 
     // For each chord passed in, generate the corresponding .wav
     for (size_t i = 0; i < chords.size(); i++) {
         std::vector<WavFile> chord_notes;
         for (size_t j = 0; j < chords[i].size(); j++) {
-            std::string wav_file_path = default_soundfiles_path + chords[i][j] + ".wav";
+            std::string wav_file_path = target_samplepack_path + chords[i][j] + ".wav";
             WavFile note = load_wav(wav_file_path);
             chord_notes.push_back(note);
         }
@@ -26,7 +30,7 @@ std::string render_chord_progression(const std::vector<std::vector<std::string>>
     }
 
     // Generate the final file and return the file path
-    file_path = out_dir + file_name;
+    file_path = output_file_path + output_file_name;
     WavFile final_progression = append_adjacent_wav(generated_chords);
     write_wav(final_progression, file_path);
 

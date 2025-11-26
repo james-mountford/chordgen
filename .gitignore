@@ -7,6 +7,6 @@ build/
 *.lib
 *.exp
 *.obj
-*.pyd
+# *.pyd
 *.dll
 *.o

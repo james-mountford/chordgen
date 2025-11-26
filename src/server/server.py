@@ -5,7 +5,7 @@ import uuid
 import shutil
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", "chordgen", "python"))
-from chordgen.python.chordgen import mixer as mixer
+from chordgen import chordgen as chordgen
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def create_progression():
     progression = data.get('PROGRESSION')
     file_name = f"{uuid.uuid4()}.wav"
 
-    generated_rel = mixer.render_chord_progression(progression, file_name)
+    generated_rel = chordgen.render_chord_progression(progression, file_name)
 
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # /src
     generated_path = os.path.abspath(
@@ -43,6 +43,6 @@ def create_progression():
 def mix_chords():
     file_name = str(uuid.uuid4()) + '.wav'
     sample_progression = [['C3', 'E3', 'G3', 'C4'], ['G3', 'B3', 'D4'], ['C3', 'E3', 'G3', 'C4']]
-    file_path = mixer.render_chord_progression(sample_progression, file_name)
+    file_path = chordgen.render_chord_progression(sample_progression, file_name)
     print(file_path)
     return "<p>Placeholder for the actual stout stream...</p>"

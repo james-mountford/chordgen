@@ -10,7 +10,7 @@ sys.path.append(
         os.path.join(os.path.dirname(__file__), "..", "..", "python")
     )
 )
-from mixer import mixer as mixer
+from chordgen.python.chordgen import mixer as mixer
 
 app = Flask(__name__)
 

@@ -7,7 +7,7 @@ const NUM_KEYS = 15;
 const AVAILABLE_NOTES = ['C3', 'C#3', 'D3', 'D#3', 'E3', 'F3', 'F#3', 'G3', 'G#3', 'A3', 'A#3', 'B3', 'C4', 'C#4', 'D4', 'D#4', 'E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4']
 let CURRENTLY_PLAYING = false;
 let CURRENT_CLEF = 'treble';
-let DEBUG = false;
+let DEBUG = true;
 
 // Functions used for core generation
 function generateRandomKey(keys) {
@@ -53,6 +53,18 @@ function assignChordNotes(selectedKey, selectedProgression) {
                 break;
             case 'vi':
                 chordNotes = [selectedKey.submediant, selectedKey.submediant, selectedKey.tonic, selectedKey.mediant];
+                break;
+            case 'i':
+                chordNotes = [selectedKey.tonic, selectedKey.tonic, selectedKey.mediant, selectedKey.dominant];
+                break;
+            case 'III':
+                chordNotes = [selectedKey.mediant, selectedKey.mediant, selectedKey.dominant, selectedKey.leadingtone];
+                break;
+            case 'VI':
+                chordNotes = [selectedKey.submediant, selectedKey.submediant, selectedKey.tonic, selectedKey.mediant];
+                break;
+            case 'iv':
+                chordNotes = [selectedKey.subdominant, selectedKey.subdominant, selectedKey.submediant, selectedKey.tonic];
                 break;
         }
         expandedProgressionWithNotes.push(chordNotes);

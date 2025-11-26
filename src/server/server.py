@@ -4,12 +4,7 @@ import sys
 import uuid
 import shutil
 
-# add the root 'python' folder to sys.path
-sys.path.append(
-    os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "..", "..", "python")
-    )
-)
+sys.path.append(os.path.join(os.path.dirname(__file__), "..", "chordgen", "python"))
 from chordgen.python.chordgen import mixer as mixer
 
 app = Flask(__name__)

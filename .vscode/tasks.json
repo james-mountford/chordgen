@@ -2,40 +2,48 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build mixer",
+      "label": "build mixer (test harness)",
       "type": "shell",
       "command": "g++",
       "args": [
         "-std=c++20",
-        "${workspaceFolder}/src/server/mixer/main.cpp",
-        "${workspaceFolder}/src/server/mixer/mixer.cpp",
-        "${workspaceFolder}/src/server/mixer/wav.cpp",
+
+        // main test file
+        "${workspaceFolder}/src/chordgen/src/main.cpp",
+
+        // core implementation
+        "${workspaceFolder}/src/chordgen/src/mixer.cpp",
+        "${workspaceFolder}/src/chordgen/src/wav.cpp",
+        "${workspaceFolder}/src/chordgen/src/mixer_py.cpp",
+
+        // header include path
+        "-I", "${workspaceFolder}/src/chordgen/include",
+
+        // output
         "-o",
-        "${workspaceFolder}/src/server/mixer/main.exe"
+        "${workspaceFolder}/build/mixer_test.exe"
       ],
       "problemMatcher": [
         "$gcc"
       ]
     },
+
     {
       "type": "cppbuild",
-      "label": "C/C++: g++.exe build active file",
-      "command": "C:/msys64/ucrt64/bin/g++.exe",
+      "label": "C/C++: build active file",
+      "command": "g++",
       "args": [
         "-fdiagnostics-color=always",
         "-g",
         "${file}",
         "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        "${fileDirname}/${fileBasenameNoExtension}.exe"
       ],
       "options": {
-        "cwd": "C:/msys64/ucrt64/bin"
+        "cwd": "${workspaceFolder}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "group": "build",
-      "detail": "compiler: C:/msys64/ucrt64/bin/g++.exe"
+      "problemMatcher": ["$gcc"],
+      "group": "build"
     }
   ]
 }

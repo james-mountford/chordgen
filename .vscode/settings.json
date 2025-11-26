@@ -78,6 +78,6 @@
         "valarray": "cpp"
     },
     "python.analysis.extraPaths": [
-        "./python"
+        "./src/chordgen/python"
     ]
 }

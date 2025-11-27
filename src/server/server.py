@@ -6,7 +6,7 @@ import uuid
 ROOT = os.path.dirname(__file__)
 PKG = os.path.abspath(os.path.join(ROOT, "..", "chordgen", "python"))
 sys.path.append(PKG)
-import chordgen
+from chordgen import chordgen
 
 app = Flask(__name__)
 

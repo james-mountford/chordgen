@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, jsonify
 import os
 import sys
 import uuid
-import shutil
 
-sys.path.append(os.path.join(os.path.dirname(__file__), "..", "chordgen", "python"))
-from chordgen import chordgen as chordgen
+ROOT = os.path.dirname(__file__)
+PKG = os.path.abspath(os.path.join(ROOT, "..", "chordgen", "python"))
+sys.path.append(PKG)
+import chordgen
 
 app = Flask(__name__)
 
@@ -23,19 +24,11 @@ def create_progression():
     progression = data.get('PROGRESSION')
     file_name = f"{uuid.uuid4()}.wav"
 
-    generated_rel = chordgen.render_chord_progression(progression, file_name)
-
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # /src
-    generated_path = os.path.abspath(
-        os.path.join(project_root, "src", generated_rel)
-    )
+    chordgen.render_chord_progression(progression, file_name)
 
     base_dir = os.path.dirname(os.path.abspath(__file__))  # /src/server
     user_gen_dir = os.path.join(base_dir, "static", "user_generated")
     os.makedirs(user_gen_dir, exist_ok=True)
-
-    target_path = os.path.join(user_gen_dir, file_name)
-    shutil.move(generated_path, target_path)
 
     return jsonify({"FILE_URL": f"/static/user_generated/{file_name}"})
 

@@ -12,7 +12,7 @@ std::string render_chord_progression(
         const std::string output_file_name,
         const std::string output_file_path
         ) {
-            
+
     std::string file_path;
     std::vector<WavFile> generated_chords;
 
@@ -37,7 +37,7 @@ std::string render_chord_progression(
     return file_path;
 }
 
-PYBIND11_MODULE(mixer, m) {
+PYBIND11_MODULE(chordgen, m) {
     m.doc() = "Prototype mixer module";
     m.def(
         "render_chord_progression",
